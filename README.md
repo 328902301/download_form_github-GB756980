@@ -1,4 +1,4 @@
-# download_form_github：从 Github更新Release或下载文件
+从 Github更新Release或下载文件
 
 
 ## 简介
