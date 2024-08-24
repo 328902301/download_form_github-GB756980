@@ -1,0 +1,372 @@
+{
+  "github_token": "",
+  "release": [
+    {
+      "enabled": "true",
+      "owner": "2dust",
+      "repository": "v2rayN",
+      "version": "6.55",
+      "save_path": "D:\\加速",
+      "files": [
+        "v2rayN.zip"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "6yy66yy",
+      "repository": "legod-auto-pause",
+      "version": "v2.2.3_fix",
+      "save_path": "D:\\加速\\雷神加速器\\自动暂停",
+      "files": []
+    },
+    {
+      "enabled": "true",
+      "owner": "SnxiaLianXin",
+      "repository": "LOLAutomationTools",
+      "version": "v2.5.10.4",
+      "save_path": "D:\\Game\\GameTools\\LOL\\LOLAutomationTools",
+      "files": []
+    },
+    {
+      "enabled": "true",
+      "owner": "cangzhang",
+      "repository": "champ-r",
+      "version": "v2.0.2-b7",
+      "save_path": "D:\\Game\\GameTools\\LOL\\ChampR\\V2",
+      "files": []
+    },
+    {
+      "enabled": "true",
+      "owner": "H4rry217",
+      "repository": "AimRobotLite",
+      "version": "V2.0.7",
+      "save_path": "D:\\Game\\GameTools\\BFV\\ARL",
+      "files": []
+    },
+    {
+      "enabled": "true",
+      "owner": "sch-lda",
+      "repository": "yctest2",
+      "version": "CI",
+      "save_path": "D:\\Game\\GameTools\\GTAV\\线上小助手",
+      "files": [
+        "GTA5OnlineTools.exe"
+      ]
+    }
+  ],
+  "file": [
+    {
+      "enabled": "false",
+      "owner": "CrazyZhang666",
+      "repository": "GTA5OnlineLua",
+      "save_path": "%ProgramData%\\GTA5OnlineTools\\Kiddion\\scripts",
+      "folder": "Kiddion",
+      "files": [
+        "AliceLua.zip"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "UltimateMenu",
+      "repository": "UltimateMenu",
+      "save_path": "%ProgramData%\\GTA5OnlineTools\\Kiddion\\scripts",
+      "folder": "Kiddions",
+      "files": []
+    },
+    {
+      "enabled": "true",
+      "owner": "Deadlineem",
+      "repository": "Extras-Addon-for-YimMenu",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "Extras-Addon.lua",
+        "Extras-data.lua",
+        "json.lua"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "sch-lda",
+      "repository": "SCH-LUA-YIMMENU",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "sch.lua"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "wangzixuank",
+      "repository": "YimMenu-HeistLua",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "scripts",
+      "files": [
+        "Heist.lua"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "CrazyZhang666",
+      "repository": "GTA5OnlineLua",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "YimMenu",
+      "files": [
+        "AliceLua.zip"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "TCRoid",
+      "repository": "YimMenu-Lua-RScript",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "RScript",
+      "files": []
+    },
+    {
+      "enabled": "true",
+      "owner": "TCRoid",
+      "repository": "YimMenu-Lua-RScript",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "RScript.lua"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "TCRoid",
+      "repository": "YimMenu-Lua-RS-Missions",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "RS_Missions.lua"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "YimMenu-Lua",
+      "repository": "GunVan",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "gun_van.lua"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "YimMenu-Lua",
+      "repository": "MiniGameHack",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "minigamehack.lua"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "YimMenu-Lua",
+      "repository": "YimResupplier",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "YimResupplier.lua"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "YimMenu-Lua",
+      "repository": "DailyCollectibles",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "daily_collectibles.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "UltimateMenu",
+      "repository": "UltimateMenu",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "YimMenu",
+      "files": []
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "Samurais-Scripts",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "data",
+      "files": []
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "Samurais-Scripts",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "lib",
+      "files": []
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "Samurais-Scripts",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "samurais_scripts.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "Pessi",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "Pessi.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "Harmless-Scripts",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "HarmlessScript.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "PayphoneHits",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "payphone_hits.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "TokyoDrift",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "tokyodrift.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "UnlockEverything",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "WasabiWords.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "RandomEvents",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "random_events.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "FMTransactionTriggerer",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "service_transactions.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "GroundFireworks",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "fireworks.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "Casino-Pacino",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "CasinoPacino.lua",
+        "CasinoPacinoJson.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "Singleplayer-Menu",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "SinglePlayer.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "Removed-vehicles",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "Removed Vehicles v1.69.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "Sightseeing",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "sightseeing.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "EliteTracker",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "elite_tracker.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "Cutscene-Player",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "cutscene_player.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "Internet",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "InternetComputers.lua"
+      ]
+    }
+  ]
+}
