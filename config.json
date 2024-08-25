@@ -70,28 +70,6 @@
       ]
     },
     {
-      "enabled": "false",
-      "owner": "CrazyZhang666",
-      "repository": "GTA5OnlineLua",
-      "description": "由Alice大佬开发的Kiddion专用Lua脚本，相当于Kiddion增强版DLC，推荐使用。",
-      "github_url": "https://github.com/CrazyZhang666/GTA5OnlineLua/blob/main/Kiddion/AliceLua.zip",
-      "save_path": "%ProgramData%\\GTA5OnlineTools\\Kiddion\\scripts",
-      "folder": "Kiddion",
-      "files": [
-        "AliceLua.zip"
-      ]
-    },
-    {
-      "enabled": "false",
-      "owner": "UltimateMenu",
-      "repository": "UltimateMenu",
-      "description": "一个菜单脚本，具有出色的解锁/抢劫编辑器和支持 kiddions modest menu 和 YimMenu 的金钱选项。",
-      "github_url": "https://github.com/UltimateMenu/UltimateMenu/tree/main/Kiddions",
-      "save_path": "%ProgramData%\\GTA5OnlineTools\\Kiddion\\scripts",
-      "folder": "Kiddions",
-      "files": []
-    },
-    {
       "enabled": "true",
       "owner": "Deadlineem",
       "repository": "Extras-Addon-for-YimMenu",
@@ -445,6 +423,28 @@
       "files": [
         "InternetComputers.lua"
       ]
+    },
+    {
+      "enabled": "false",
+      "owner": "CrazyZhang666",
+      "repository": "GTA5OnlineLua",
+      "description": "由Alice大佬开发的Kiddion专用Lua脚本，相当于Kiddion增强版DLC，推荐使用。",
+      "github_url": "https://github.com/CrazyZhang666/GTA5OnlineLua/blob/main/Kiddion/AliceLua.zip",
+      "save_path": "%ProgramData%\\GTA5OnlineTools\\Kiddion\\scripts",
+      "folder": "Kiddion",
+      "files": [
+        "AliceLua.zip"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "UltimateMenu",
+      "repository": "UltimateMenu",
+      "description": "一个菜单脚本，具有出色的解锁/抢劫编辑器和支持 kiddions modest menu 和 YimMenu 的金钱选项。",
+      "github_url": "https://github.com/UltimateMenu/UltimateMenu/tree/main/Kiddions",
+      "save_path": "%ProgramData%\\GTA5OnlineTools\\Kiddion\\scripts",
+      "folder": "Kiddions",
+      "files": []
     }
   ]
 }
