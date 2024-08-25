@@ -369,7 +369,6 @@ def main():
         nonlocal default_action_executed
         if not default_action_executed:  # 如果默认操作未执行
             default_action_executed = True  # 设置标志位
-            print("=" * 100)  # 分隔线
             github_token = config.get("github_token")  # 获取 GitHub Token
 
             if github_token:  # 如果提供了 Token
