@@ -411,6 +411,7 @@ def main():
             logging.info(f"{'=' * 100}")  # 分隔线
 
             logging.info("即将开始下载 Github 文件")  # 记录信息
+            logging.info(f"{'-' * 100}")  # 分隔线
             for project in config.get("file", []):  # 遍历文件项目
                 if project.get("enabled") == "true":  # 如果启用下载功能
                     owner = project.get("owner")  # 获取所有者
