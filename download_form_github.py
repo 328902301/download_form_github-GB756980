@@ -363,9 +363,10 @@ def main():
     choice = None  # 初始化选择变量
     default_action_executed = False  # 标志位，表示默认操作是否已执行
 
-    timer = threading.Timer(3.0, lambda: ( exec_default_action()))  # 创建一个3秒的定时器
+    timer = threading.Timer(3.0, lambda: (exec_default_action()))  # 创建一个3秒的定时器
 
     def exec_default_action():
+        print("=" * 100)  # 分隔线
         nonlocal default_action_executed
         if not default_action_executed:  # 如果默认操作未执行
             default_action_executed = True  # 设置标志位
@@ -432,9 +433,7 @@ def main():
     input_thread.join()
 
     if choice == '1':  # 如果选择执行所有项目
-        print("=" * 100)  # 分隔线
         exec_default_action()  # 执行默认操作
-        logging.info("=" * 100)  # 分隔线
 
     elif choice == '2':  # 如果选择修改更新 Release
         print("=" * 100)  # 分隔线
