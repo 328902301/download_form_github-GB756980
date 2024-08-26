@@ -241,7 +241,6 @@ def download_github_file(owner, repo, save_path, folder=None, files=None, token=
     :param token: GitHub 访问令牌（可选）
     """
     base_url = f"https://raw.githubusercontent.com/{owner}/{repo}/main/"  # 基础 URL
-    folder_path = folder.rstrip('/') + '/' if folder else ''  # 文件夹路径
 
     def download_from_url(file_url, file_path):
         """
@@ -276,32 +275,45 @@ def download_github_file(owner, repo, save_path, folder=None, files=None, token=
                 item_path = os.path.join(folder_path, item['name'])  # 构造路径
                 if item['type'] == 'file':  # 如果是文件
                     file_url = item['download_url']  # 获取下载链接
-                    file_path = os.path.normpath(item_path)  # 规范化路径
-                    download_from_url(file_url, file_path)  # 下载文件
+                    download_from_url(file_url, item_path)  # 下载文件
                 elif item['type'] == 'dir':  # 如果是文件夹
                     subfolder_url = f"https://api.github.com/repos/{owner}/{repo}/contents/{item['path']}"  # 获取子文件夹 URL
-                    subfolder_path = os.path.normpath(item_path)  # 规范化路径
-                    os.makedirs(subfolder_path, exist_ok=True)  # 创建子文件夹
-                    download_folder_contents(subfolder_url, subfolder_path)  # 递归下载
+                    download_folder_contents(subfolder_url, item_path)  # 递归下载
         except requests.exceptions.RequestException as e:  # 捕获请求异常
             logging.error(f"下载 GitHub 文件夹 {folder_path} 时发生错误: {e}")  # 记录错误日志
 
     try:
         if files:  # 如果需要下载指定文件
-            for file_name in files:
-                if folder:  # 如果指定了文件夹
-                    file_url = f"{base_url}{folder_path}{file_name}"  # 构造文件 URL
-                    file_path = os.path.normpath(os.path.join(save_path, file_name))  # 构造文件保存路径
-                else:  # 如果没有指定文件夹
+            if folder is None:  # folder 为空，下载根目录的 files 文件
+                for file_name in files:
                     file_url = f"{base_url}{file_name}"  # 构造文件 URL
                     file_path = os.path.normpath(os.path.join(save_path, file_name))  # 构造文件保存路径
+                    download_from_url(file_url, file_path)  # 下载文件
+            else:  # folder 不为空
+                for file_name in files:
+                    # 确保 folder 和 file_name 之间没有多余的斜杠
+                    file_url = f"{base_url}{folder.rstrip('/')}/{file_name}"  # 构造文件 URL
+                    file_path = os.path.normpath(os.path.join(save_path, file_name))  # 构造文件保存路径
+                    download_from_url(file_url, file_path)  # 下载文件
 
-                download_from_url(file_url, file_path)  # 下载文件
-        else:  # 如果没有指定文件, 下载文件夹中的所有文件
-            folder_url = f"https://api.github.com/repos/{owner}/{repo}/contents/{folder_path}"  # 获取文件夹内容 URL
-            full_save_path = os.path.normpath(os.path.join(save_path, folder_path))  # 构造完整保存路径
-            os.makedirs(full_save_path, exist_ok=True)  # 创建文件夹
-            download_folder_contents(folder_url, full_save_path)  # 递归下载
+        else:  # 如果没有指定文件
+            if folder is None:  # folder 为空，下载根目录的所有文件
+                folder_url = f"https://api.github.com/repos/{owner}/{repo}/contents"  # 获取根目录内容 URL
+                full_save_path = os.path.normpath(save_path)  # 保持 save_path 不变
+                os.makedirs(full_save_path, exist_ok=True)  # 创建文件夹
+                download_folder_contents(folder_url, full_save_path)  # 递归下载
+            else:  # folder 不为空
+                # 处理 folder 为空的情况
+                folder_url = f"https://api.github.com/repos/{owner}/{repo}/contents{folder}"  # 获取文件夹内容 URL
+                # 如果 folder 以 '/' 开头，则不在 save_path 中体现当前 folder 结构
+                if folder.startswith('/'):
+                    folder_path = os.path.normpath(save_path)  # 保持 save_path 不变
+                else:  # 如果 folder 不以 '/' 开头
+                    folder_path = os.path.normpath(os.path.join(save_path, folder))  # 使用 folder 更新保存路径
+
+                os.makedirs(folder_path, exist_ok=True)  # 创建文件夹
+                download_folder_contents(folder_url, folder_path)  # 递归下载
+
     except requests.exceptions.RequestException as e:  # 捕获请求异常
         logging.error(f"下载 GitHub 文件时发生错误: {e}")  # 记录错误日志
 

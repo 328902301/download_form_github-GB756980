@@ -74,7 +74,7 @@ config.json格式如下：
       "description": "此翻译方式为劫持翻译，将Lua传入Yimmenu的显示相关API的参数进行实时替换。",
       "github_url": "https://github.com/sch-lda/yctest2/tree/main/Lua",
       "save_path": "%APPDATA%\\YimMenu\\translations",
-      "folder": "Lua",
+      "folder": "/Lua",
       "files": [
         "lua_lang.json"
       ]
@@ -121,11 +121,13 @@ files：需要下载的文件夹
 ````
 下载file时，目前不会进行文件更新时间的记录和比较。
 
-如果“需要下载的文件夹”为空，则下载仓库根目录的“需要下载的文件”文件。
+如果“folder”为空，“files”不为空，则下载仓库根目录的“files”文件。
 
-如果“需要下载的文件夹”不为空，“需要下载的文件”不为空，则下载“需要下载的文件夹”下的“需要下载的文件”文件。
+如果“folder”不为空（"folder": "/Lua"的情况，当前 folder 仅用来帮助拼接下载链接，不在 save_path 中体现），“files”不为空，则下载“folder”下的“files”文件。
 
-如果“需要下载的文件夹”不为空，“需要下载的文件”为空，则下载“需要下载的文件夹”文件夹下的全部文件（不包括子文件夹）。
+如果“folder”不为空（"folder": "/Lua"的情况，当前 folder 仅用来帮助拼接下载链接，不在 save_path 中体现），“files”为空，则下载“folder”文件夹下的全部文件（包括子文件夹），不保留当前文件夹结构，但保留子文件夹结构。
+
+如果“folder”不为空（"folder": "Lua"的情况，当前 folder 在 save_path 中体现），“files”为空，则下载“folder”文件夹下的全部文件（包括子文件夹），并保留当前 folder 结构和子文件夹结构。
 ````
 
 ````
