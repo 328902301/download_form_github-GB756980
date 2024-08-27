@@ -63,6 +63,8 @@ def download_and_unzip(url, save_path, file_name, token=None):
     :param file_name: 文件名称
     :param token: GitHub 访问令牌（可选）
     """
+    # 将相对路径转换为绝对路径
+    save_path = os.path.abspath(save_path)
     file_save_path = os.path.join(save_path, file_name)  # 完整文件保存路径
     older_version_file_path = os.path.join(save_path, f"【旧版本, 请手动删除】{file_name}")  # 旧版本文件路径
 
