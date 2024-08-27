@@ -259,12 +259,13 @@ def download_github_file(owner, repo, save_path, folder=None, files=None, token=
         # 下载文件并覆盖
         download_and_unzip(file_url, file_dir, file_name, token)  # 下载并解压文件
 
-    def download_folder_contents(folder_url, folder_path):
+    def download_folder_contents(folder_url, folder_path, ignore_folder_structure):
         """
         递归下载文件夹中的所有文件和子文件夹。
 
         :param folder_url: 文件夹的 URL
         :param folder_path: 文件夹保存路径
+        :param ignore_folder_structure: 是否忽略当前 folder 的结构
         """
         try:
             response = requests.get(folder_url, headers={'Authorization': f'token {token}'} if token else {})  # 发送请求
@@ -275,44 +276,40 @@ def download_github_file(owner, repo, save_path, folder=None, files=None, token=
                 item_path = os.path.join(folder_path, item['name'])  # 构造路径
                 if item['type'] == 'file':  # 如果是文件
                     file_url = item['download_url']  # 获取下载链接
-                    download_from_url(file_url, item_path)  # 下载文件
+                    if ignore_folder_structure:
+                        download_from_url(file_url, item_path)  # 下载文件，不保留 folder 结构
+                    else:
+                        download_from_url(file_url, os.path.normpath(os.path.join(folder_path, item['name'])))  # 下载文件，保留 folder 结构
                 elif item['type'] == 'dir':  # 如果是文件夹
                     subfolder_url = f"https://api.github.com/repos/{owner}/{repo}/contents/{item['path']}"  # 获取子文件夹 URL
-                    download_folder_contents(subfolder_url, item_path)  # 递归下载
+                    new_folder_path = item_path if not ignore_folder_structure else folder_path  # 处理文件夹结构
+                    download_folder_contents(subfolder_url, new_folder_path, ignore_folder_structure)  # 递归下载
         except requests.exceptions.RequestException as e:  # 捕获请求异常
             logging.error(f"下载 GitHub 文件夹 {folder_path} 时发生错误: {e}")  # 记录错误日志
 
     try:
         if files:  # 如果需要下载指定文件
-            if folder is None:  # folder 为空，下载根目录的 files 文件
-                for file_name in files:
-                    file_url = f"{base_url}{file_name}"  # 构造文件 URL
-                    file_path = os.path.normpath(os.path.join(save_path, file_name))  # 构造文件保存路径
-                    download_from_url(file_url, file_path)  # 下载文件
-            else:  # folder 不为空
-                for file_name in files:
-                    # 确保 folder 和 file_name 之间没有多余的斜杠
-                    file_url = f"{base_url}{folder.rstrip('/')}/{file_name}"  # 构造文件 URL
-                    file_path = os.path.normpath(os.path.join(save_path, file_name))  # 构造文件保存路径
-                    download_from_url(file_url, file_path)  # 下载文件
+            for file_name in files:
+                if folder and folder.startswith('/'):  # 当前 folder 仅用于拼接下载链接
+                    file_url = f"{base_url}{folder.lstrip('/')}/{file_name}"  # 去掉前面的 '/'
+                    file_path = os.path.normpath(os.path.join(save_path, file_name))  # 不保留 folder 结构
+                else:  # folder 不为空且不以 '/' 开头，保留当前 folder 结构
+                    file_url = f"{base_url}{folder}/{file_name}" if folder else f"{base_url}{file_name}"
+                    file_path = os.path.normpath(os.path.join(save_path, folder, file_name)) if folder else os.path.normpath(os.path.join(save_path, file_name))
+
+                download_from_url(file_url, file_path)  # 下载文件
 
         else:  # 如果没有指定文件
             if folder is None:  # folder 为空，下载根目录的所有文件
                 folder_url = f"https://api.github.com/repos/{owner}/{repo}/contents"  # 获取根目录内容 URL
                 full_save_path = os.path.normpath(save_path)  # 保持 save_path 不变
                 os.makedirs(full_save_path, exist_ok=True)  # 创建文件夹
-                download_folder_contents(folder_url, full_save_path)  # 递归下载
+                download_folder_contents(folder_url, full_save_path, False)  # 递归下载，保留子文件夹结构
             else:  # folder 不为空
-                # 处理 folder 为空的情况
                 folder_url = f"https://api.github.com/repos/{owner}/{repo}/contents{folder}"  # 获取文件夹内容 URL
-                # 如果 folder 以 '/' 开头，则不在 save_path 中体现当前 folder 结构
-                if folder.startswith('/'):
-                    folder_path = os.path.normpath(save_path)  # 保持 save_path 不变
-                else:  # 如果 folder 不以 '/' 开头
-                    folder_path = os.path.normpath(os.path.join(save_path, folder))  # 使用 folder 更新保存路径
-
+                folder_path = os.path.normpath(save_path) if folder.startswith('/') else os.path.normpath(os.path.join(save_path, folder))  # 使用 folder 更新保存路径
                 os.makedirs(folder_path, exist_ok=True)  # 创建文件夹
-                download_folder_contents(folder_url, folder_path)  # 递归下载
+                download_folder_contents(folder_url, folder_path, folder.startswith('/'))  # 递归下载，是否保留当前 folder 结构
 
     except requests.exceptions.RequestException as e:  # 捕获请求异常
         logging.error(f"下载 GitHub 文件时发生错误: {e}")  # 记录错误日志

@@ -123,11 +123,13 @@ files：需要下载的文件夹
 
 如果“folder”为空，“files”不为空，则下载仓库根目录的“files”文件。
 
-如果“folder”不为空（"folder": "/Lua"的情况，当前 folder 仅用来帮助拼接下载链接，不在 save_path 中体现），“files”不为空，则下载“folder”下的“files”文件。
+如果“folder”不为空（"folder": "/Lua"的情况，当前 folder 仅用来帮助拼接下载链接，不在 save_path 中体现），“files”不为空，则下载“folder”下的“files”文件，不保留当前 folder 结构。
 
-如果“folder”不为空（"folder": "/Lua"的情况，当前 folder 仅用来帮助拼接下载链接，不在 save_path 中体现），“files”为空，则下载“folder”文件夹下的全部文件（包括子文件夹），不保留当前文件夹结构，但保留子文件夹结构。
+如果“folder”不为空（"folder": "Lua"的情况，当前 folder 在 save_path 中体现），“files”不为空，则下载“folder”下的“files”文件，并保留当前 folder 结构。
 
-如果“folder”不为空（"folder": "Lua"的情况，当前 folder 在 save_path 中体现），“files”为空，则下载“folder”文件夹下的全部文件（包括子文件夹），并保留当前 folder 结构和子文件夹结构。
+如果“folder”不为空（"folder": "/Lua"的情况，当前 folder 仅用来帮助拼接下载链接，不在 save_path 中体现），“files”为空，则下载“folder”文件夹下的全部文件（包括子文件夹），不保留当前 folder 结构，但保留子文件夹结构。
+
+如果“folder”不为空（"folder": "Lua"的情况，当前 folder 在 save_path 中体现），“files”为空，则下载“folder”下的全部文件（包括子文件夹），并保留当前 folder 结构和子文件夹结构。
 ````
 
 ````
