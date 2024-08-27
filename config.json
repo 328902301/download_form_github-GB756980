@@ -41,7 +41,9 @@
             "github_url": "https://github.com/cangzhang/champ-r",
             "version": "v2.0.2-b7",
             "save_path": "D:\\Game\\GameTools\\LOL\\ChampR\\V2",
-            "files": []
+            "files": [
+                "champr-v*.zip"
+            ]
         },
         {
             "enabled": "true",
@@ -415,7 +417,9 @@
             "github_url": "https://github.com/UltimateMenu/UltimateMenu/tree/main/YimMenu",
             "save_path": "%APPDATA%\\YimMenu\\scripts",
             "folder": "/YimMenu",
-            "files": []
+            "files": [
+                "Ultimate_Menu For YimMenu V*.lua"
+            ]
         },
         {
             "enabled": "false",
@@ -437,7 +441,9 @@
             "github_url": "https://github.com/UltimateMenu/UltimateMenu/tree/main/Kiddions",
             "save_path": "%ProgramData%\\GTA5OnlineTools\\Kiddion\\scripts",
             "folder": "/Kiddions",
-            "files": []
+            "files": [
+                "Ultimate_Menu_V*.lua"
+            ]
         }
     ]
 }
