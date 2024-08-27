@@ -140,5 +140,6 @@ download_github_artifact  下载github的artifact
 download_github_file 下载github的file
 read_or_update_json_file 读写json文件
 modify_project_status 修改是否下载的标识
+setup_logging 设置日志输出
 main 主函数
 ````

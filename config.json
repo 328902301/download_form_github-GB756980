@@ -1,449 +1,449 @@
 {
-    "github_token": "",
-    "release": [
-        {
-            "enabled": "true",
-            "owner": "2dust",
-            "repository": "v2rayN",
-            "description": "适用于 Windows 的 GUI 客户端，支持 Xray Core 和 v2fly Core 等。",
-            "github_url": "https://github.com/2dust/v2rayN",
-            "version": "6.55",
-            "save_path": "D:\\加速",
-            "files": [
-                "v2rayN.zip"
-            ]
-        },
-        {
-            "enabled": "true",
-            "owner": "6yy66yy",
-            "repository": "legod-auto-pause",
-            "description": "雷神加速器时长自动暂停",
-            "github_url": "https://github.com/6yy66yy/legod-auto-pause",
-            "version": "v2.2.3_fix",
-            "save_path": "D:\\加速\\雷神加速器\\自动暂停",
-            "files": []
-        },
-        {
-            "enabled": "true",
-            "owner": "SnxiaLianXin",
-            "repository": "LOLAutomationTools",
-            "description": "LOL（英雄联盟）自动化工具",
-            "github_url": "https://github.com/SnxiaLianXin/LOLAutomationTools",
-            "version": "v2.5.10.4",
-            "save_path": "D:\\Game\\GameTools\\LOL\\LOLAutomationTools",
-            "files": []
-        },
-        {
-            "enabled": "true",
-            "owner": "cangzhang",
-            "repository": "champ-r",
-            "description": "又一个英雄联盟帮手",
-            "github_url": "https://github.com/cangzhang/champ-r",
-            "version": "v2.0.2-b7",
-            "save_path": "D:\\Game\\GameTools\\LOL\\ChampR\\V2",
-            "files": [
-                "champr-v*.zip"
-            ]
-        },
-        {
-            "enabled": "true",
-            "owner": "sch-lda",
-            "repository": "yctest2",
-            "description": "GTA5线上小助手-Yimmenu持续集成及其他在线资源。",
-            "github_url": "https://github.com/sch-lda/yctest2",
-            "version": "CI",
-            "save_path": "D:\\Game\\GameTools\\GTAV\\线上小助手",
-            "files": [
-                "GTA5OnlineTools.exe"
-            ]
-        }
-    ],
-    "file": [
-        {
-            "enabled": "true",
-            "owner": "sch-lda",
-            "repository": "yctest2",
-            "description": "此翻译方式为劫持翻译，将Lua传入Yimmenu的显示相关API的参数进行实时替换。",
-            "github_url": "https://github.com/sch-lda/yctest2/tree/main/Lua",
-            "save_path": "%APPDATA%\\YimMenu\\translations",
-            "folder": "/Lua",
-            "files": [
-                "lua_lang.json"
-            ]
-        },
-        {
-            "enabled": "true",
-            "owner": "Deadlineem",
-            "repository": "Extras-Addon-for-YimMenu",
-            "description": "这个插件为YimMenu提供了额外的工具，这些工具还不是独立基础版本的一部分。",
-            "github_url": "https://github.com/Deadlineem/Extras-Addon-for-YimMenu",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "",
-            "files": [
-                "Extras-Addon.lua",
-                "Extras-data.lua",
-                "json.lua"
-            ]
-        },
-        {
-            "enabled": "true",
-            "owner": "sch-lda",
-            "repository": "SCH-LUA-YIMMENU",
-            "description": "discord用户yeahsch的自用脚本,第一个开源yim开发者示例lua",
-            "github_url": "https://github.com/sch-lda/SCH-LUA-YIMMENU",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "",
-            "files": [
-                "sch.lua"
-            ]
-        },
-        {
-            "enabled": "true",
-            "owner": "wangzixuank",
-            "repository": "YimMenu-HeistLua",
-            "description": "佩岛/赌场/末日任务脚本",
-            "github_url": "https://github.com/wangzixuank/YimMenu-HeistLua",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "/scripts",
-            "files": [
-                "Heist.lua"
-            ]
-        },
-        {
-            "enabled": "true",
-            "owner": "CrazyZhang666",
-            "repository": "GTA5OnlineLua",
-            "description": "一款由Alice大佬开发的YimMenu使用的Lua脚本",
-            "github_url": "https://github.com/CrazyZhang666/GTA5OnlineLua/blob/main/YimMenu/AliceLua.zip",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "/YimMenu",
-            "files": [
-                "AliceLua.zip"
-            ]
-        },
-        {
-            "enabled": "true",
-            "owner": "TCRoid",
-            "repository": "YimMenu-Lua-RScript",
-            "description": "载具、NPC实体管理控制，任务助手，和其它若干功能",
-            "github_url": "https://github.com/TCRoid/YimMenu-Lua-RScript",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "RScript",
-            "files": [
-                "functions.lua",
-                "tables.lua"
-            ]
-        },
-        {
-            "enabled": "true",
-            "owner": "TCRoid",
-            "repository": "YimMenu-Lua-RScript",
-            "description": "载具、NPC实体管理控制，任务助手，和其它若干功能",
-            "github_url": "https://github.com/TCRoid/YimMenu-Lua-RScript",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "",
-            "files": [
-                "RScript.lua"
-            ]
-        },
-        {
-            "enabled": "true",
-            "owner": "TCRoid",
-            "repository": "YimMenu-Lua-RS-Missions",
-            "description": "单人启动任务，直接完成任务，无需前置直接启动抢劫终章差事",
-            "github_url": "https://github.com/TCRoid/YimMenu-Lua-RS-Missions",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "",
-            "files": [
-                "RS_Missions.lua"
-            ]
-        },
-        {
-            "enabled": "true",
-            "owner": "YimMenu-Lua",
-            "repository": "GunVan",
-            "description": "允许您编辑武装厢型车等。",
-            "github_url": "https://github.com/YimMenu-Lua/GunVan",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "",
-            "files": [
-                "gun_van.lua"
-            ]
-        },
-        {
-            "enabled": "true",
-            "owner": "YimMenu-Lua",
-            "repository": "MiniGameHack",
-            "description": "小游戏瞬间完成，跳过黑客攻击过程",
-            "github_url": "https://github.com/YimMenu-Lua/MiniGameHack",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "",
-            "files": [
-                "minigamehack.lua"
-            ]
-        },
-        {
-            "enabled": "true",
-            "owner": "YimMenu-Lua",
-            "repository": "YimResupplier",
-            "description": "一个 Lua 脚本，可立即为 GTA 在线模式中的 MC 业务提供补给。",
-            "github_url": "https://github.com/YimMenu-Lua/YimResupplier",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "",
-            "files": [
-                "YimResupplier.lua"
-            ]
-        },
-        {
-            "enabled": "true",
-            "owner": "YimMenu-Lua",
-            "repository": "DailyCollectibles",
-            "description": "一个 Lua 脚本，可让您查看每日收藏品的位置、传送和更多内容。",
-            "github_url": "https://github.com/YimMenu-Lua/DailyCollectibles",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "",
-            "files": [
-                "daily_collectibles.lua"
-            ]
-        },
-        {
-            "enabled": "false",
-            "owner": "YimMenu-Lua",
-            "repository": "Samurais-Scripts",
-            "description": "一个 Lua 脚本的基础，以角色扮演和在充满广告机器人和有毒作弊者的游戏中享受乐趣为中心。",
-            "github_url": "https://github.com/YimMenu-Lua/Samurais-Scripts",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "includes",
-            "files": []
-        },
-        {
-            "enabled": "false",
-            "owner": "YimMenu-Lua",
-            "repository": "Samurais-Scripts",
-            "description": "一个 Lua 脚本的基础，以角色扮演和在充满广告机器人和有毒作弊者的游戏中享受乐趣为中心。",
-            "github_url": "https://github.com/YimMenu-Lua/Samurais-Scripts",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "",
-            "files": [
-                "samurais_scripts.lua"
-            ]
-        },
-        {
-            "enabled": "false",
-            "owner": "YimMenu-Lua",
-            "repository": "Pessi",
-            "description": "Pessi 主要是一个恢复脚本，有多种方法，从 1M 的快速循环到各种有限的事务。",
-            "github_url": "https://github.com/YimMenu-Lua/Pessi",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "",
-            "files": [
-                "Pessi.lua"
-            ]
-        },
-        {
-            "enabled": "false",
-            "owner": "YimMenu-Lua",
-            "repository": "Harmless-Scripts",
-            "description": "Harmless 为 YimMenu 制作的 Lua 脚本的 Repo。",
-            "github_url": "https://github.com/YimMenu-Lua/Harmless-Scripts",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "",
-            "files": [
-                "HarmlessScript.lua"
-            ]
-        },
-        {
-            "enabled": "false",
-            "owner": "YimMenu-Lua",
-            "repository": "PayphoneHits",
-            "description": "用于电话暗杀的 Lua 脚本。",
-            "github_url": "https://github.com/YimMenu-Lua/PayphoneHits",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "",
-            "files": [
-                "payphone_hits.lua"
-            ]
-        },
-        {
-            "enabled": "false",
-            "owner": "YimMenu-Lua",
-            "repository": "TokyoDrift",
-            "description": "为汽车爱好者增加了一些有趣的功能。",
-            "github_url": "https://github.com/YimMenu-Lua/TokyoDrift",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "",
-            "files": [
-                "tokyodrift.lua"
-            ]
-        },
-        {
-            "enabled": "false",
-            "owner": "YimMenu-Lua",
-            "repository": "UnlockEverything",
-            "description": "解锁一切。",
-            "github_url": "https://github.com/YimMenu-Lua/UnlockEverything",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "",
-            "files": [
-                "WasabiWords.lua"
-            ]
-        },
-        {
-            "enabled": "false",
-            "owner": "YimMenu-Lua",
-            "repository": "RandomEvents",
-            "description": "YimMenu 关于随机事件的 Lua 脚本。。",
-            "github_url": "https://github.com/YimMenu-Lua/RandomEvents",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "",
-            "files": [
-                "random_events.lua"
-            ]
-        },
-        {
-            "enabled": "false",
-            "owner": "YimMenu-Lua",
-            "repository": "FMTransactionTriggerer",
-            "description": "允许您通过 freemode 脚本触发交易。仅供实验使用，使用风险自负。",
-            "github_url": "https://github.com/YimMenu-Lua/FMTransactionTriggerer",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "",
-            "files": [
-                "service_transactions.lua"
-            ]
-        },
-        {
-            "enabled": "false",
-            "owner": "YimMenu-Lua",
-            "repository": "GroundFireworks",
-            "description": "添加了地面烟花，其工作原理类似于旧 GTA 在线模式中的地面烟花。",
-            "github_url": "https://github.com/YimMenu-Lua/GroundFireworks",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "",
-            "files": [
-                "fireworks.lua"
-            ]
-        },
-        {
-            "enabled": "false",
-            "owner": "YimMenu-Lua",
-            "repository": "Casino-Pacino",
-            "description": "允许您通过在所有游戏中作弊来玩赌场游戏，还可以操纵赌场抢劫案。",
-            "github_url": "https://github.com/YimMenu-Lua/Casino-Pacino",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "",
-            "files": [
-                "CasinoPacino.lua",
-                "CasinoPacinoJson.lua"
-            ]
-        },
-        {
-            "enabled": "false",
-            "owner": "YimMenu-Lua",
-            "repository": "Singleplayer-Menu",
-            "description": "简单的单人作弊。",
-            "github_url": "https://github.com/YimMenu-Lua/Singleplayer-Menu",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "",
-            "files": [
-                "SinglePlayer.lua"
-            ]
-        },
-        {
-            "enabled": "false",
-            "owner": "YimMenu-Lua",
-            "repository": "Removed-vehicles",
-            "description": "重新激活通过网页购买已删除车辆的选项。",
-            "github_url": "https://github.com/YimMenu-Lua/Removed-vehicles",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "",
-            "files": [
-                "Removed Vehicles v1.69.lua"
-            ]
-        },
-        {
-            "enabled": "false",
-            "owner": "YimMenu-Lua",
-            "repository": "Sightseeing",
-            "description": "万圣节观光活动的适当脚本。",
-            "github_url": "https://github.com/YimMenu-Lua/Sightseeing",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "",
-            "files": [
-                "sightseeing.lua"
-            ]
-        },
-        {
-            "enabled": "false",
-            "owner": "YimMenu-Lua",
-            "repository": "EliteTracker",
-            "description": "允许您跟踪您的精英挑战进度。",
-            "github_url": "https://github.com/YimMenu-Lua/EliteTracker",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "",
-            "files": [
-                "elite_tracker.lua"
-            ]
-        },
-        {
-            "enabled": "false",
-            "owner": "YimMenu-Lua",
-            "repository": "Cutscene-Player",
-            "description": "允许您播放过场动画。",
-            "github_url": "https://github.com/YimMenu-Lua/Cutscene-Player",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "",
-            "files": [
-                "cutscene_player.lua"
-            ]
-        },
-        {
-            "enabled": "false",
-            "owner": "YimMenu-Lua",
-            "repository": "Internet",
-            "description": "允许您打开各种计算机。",
-            "github_url": "https://github.com/YimMenu-Lua/Internet",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "",
-            "files": [
-                "InternetComputers.lua"
-            ]
-        },
-        {
-            "enabled": "false",
-            "owner": "UltimateMenu",
-            "repository": "UltimateMenu",
-            "description": "一个菜单脚本，具有出色的解锁/抢劫编辑器和支持 kiddions modest menu 和 YimMenu 的金钱选项。",
-            "github_url": "https://github.com/UltimateMenu/UltimateMenu/tree/main/YimMenu",
-            "save_path": "%APPDATA%\\YimMenu\\scripts",
-            "folder": "/YimMenu",
-            "files": [
-                "Ultimate_Menu For YimMenu V*.lua"
-            ]
-        },
-        {
-            "enabled": "false",
-            "owner": "CrazyZhang666",
-            "repository": "GTA5OnlineLua",
-            "description": "由Alice大佬开发的Kiddion专用Lua脚本，相当于Kiddion增强版DLC，推荐使用。",
-            "github_url": "https://github.com/CrazyZhang666/GTA5OnlineLua/blob/main/Kiddion/AliceLua.zip",
-            "save_path": "%ProgramData%\\GTA5OnlineTools\\Kiddion\\scripts",
-            "folder": "/Kiddion",
-            "files": [
-                "AliceLua.zip"
-            ]
-        },
-        {
-            "enabled": "false",
-            "owner": "UltimateMenu",
-            "repository": "UltimateMenu",
-            "description": "一个菜单脚本，具有出色的解锁/抢劫编辑器和支持 kiddions modest menu 和 YimMenu 的金钱选项。",
-            "github_url": "https://github.com/UltimateMenu/UltimateMenu/tree/main/Kiddions",
-            "save_path": "%ProgramData%\\GTA5OnlineTools\\Kiddion\\scripts",
-            "folder": "/Kiddions",
-            "files": [
-                "Ultimate_Menu_V*.lua"
-            ]
-        }
-    ]
+  "github_token": "",
+  "release": [
+    {
+      "enabled": "true",
+      "owner": "2dust",
+      "repository": "v2rayN",
+      "description": "适用于 Windows 的 GUI 客户端，支持 Xray Core 和 v2fly Core 等。",
+      "github_url": "https://github.com/2dust/v2rayN",
+      "version": "6.55",
+      "save_path": "D:\\加速",
+      "files": [
+        "v2rayN.zip"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "6yy66yy",
+      "repository": "legod-auto-pause",
+      "description": "雷神加速器时长自动暂停",
+      "github_url": "https://github.com/6yy66yy/legod-auto-pause",
+      "version": "v2.2.3_fix",
+      "save_path": "D:\\加速\\雷神加速器\\自动暂停",
+      "files": []
+    },
+    {
+      "enabled": "true",
+      "owner": "SnxiaLianXin",
+      "repository": "LOLAutomationTools",
+      "description": "LOL（英雄联盟）自动化工具",
+      "github_url": "https://github.com/SnxiaLianXin/LOLAutomationTools",
+      "version": "v2.5.10.4",
+      "save_path": "D:\\Game\\GameTools\\LOL\\LOLAutomationTools",
+      "files": []
+    },
+    {
+      "enabled": "true",
+      "owner": "cangzhang",
+      "repository": "champ-r",
+      "description": "又一个英雄联盟帮手",
+      "github_url": "https://github.com/cangzhang/champ-r",
+      "version": "v2.0.2-b7",
+      "save_path": "D:\\Game\\GameTools\\LOL\\ChampR\\V2",
+      "files": [
+        "champr-v*.zip"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "sch-lda",
+      "repository": "yctest2",
+      "description": "GTA5线上小助手-Yimmenu持续集成及其他在线资源。",
+      "github_url": "https://github.com/sch-lda/yctest2",
+      "version": "CI",
+      "save_path": "D:\\Game\\GameTools\\GTAV\\线上小助手",
+      "files": [
+        "GTA5OnlineTools.exe"
+      ]
+    }
+  ],
+  "file": [
+    {
+      "enabled": "true",
+      "owner": "sch-lda",
+      "repository": "yctest2",
+      "description": "此翻译方式为劫持翻译，将Lua传入Yimmenu的显示相关API的参数进行实时替换。",
+      "github_url": "https://github.com/sch-lda/yctest2/tree/main/Lua",
+      "save_path": "%APPDATA%\\YimMenu\\translations",
+      "folder": "/Lua",
+      "files": [
+        "lua_lang.json"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "Deadlineem",
+      "repository": "Extras-Addon-for-YimMenu",
+      "description": "这个插件为YimMenu提供了额外的工具，这些工具还不是独立基础版本的一部分。",
+      "github_url": "https://github.com/Deadlineem/Extras-Addon-for-YimMenu",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "Extras-Addon.lua",
+        "Extras-data.lua",
+        "json.lua"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "sch-lda",
+      "repository": "SCH-LUA-YIMMENU",
+      "description": "discord用户yeahsch的自用脚本,第一个开源yim开发者示例lua",
+      "github_url": "https://github.com/sch-lda/SCH-LUA-YIMMENU",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "sch.lua"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "wangzixuank",
+      "repository": "YimMenu-HeistLua",
+      "description": "佩岛/赌场/末日任务脚本",
+      "github_url": "https://github.com/wangzixuank/YimMenu-HeistLua",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "/scripts",
+      "files": [
+        "Heist.lua"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "CrazyZhang666",
+      "repository": "GTA5OnlineLua",
+      "description": "一款由Alice大佬开发的YimMenu使用的Lua脚本",
+      "github_url": "https://github.com/CrazyZhang666/GTA5OnlineLua/blob/main/YimMenu/AliceLua.zip",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "/YimMenu",
+      "files": [
+        "AliceLua.zip"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "TCRoid",
+      "repository": "YimMenu-Lua-RScript",
+      "description": "载具、NPC实体管理控制，任务助手，和其它若干功能",
+      "github_url": "https://github.com/TCRoid/YimMenu-Lua-RScript",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "RScript",
+      "files": [
+        "functions.lua",
+        "tables.lua"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "TCRoid",
+      "repository": "YimMenu-Lua-RScript",
+      "description": "载具、NPC实体管理控制，任务助手，和其它若干功能",
+      "github_url": "https://github.com/TCRoid/YimMenu-Lua-RScript",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "RScript.lua"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "TCRoid",
+      "repository": "YimMenu-Lua-RS-Missions",
+      "description": "单人启动任务，直接完成任务，无需前置直接启动抢劫终章差事",
+      "github_url": "https://github.com/TCRoid/YimMenu-Lua-RS-Missions",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "RS_Missions.lua"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "YimMenu-Lua",
+      "repository": "GunVan",
+      "description": "允许您编辑武装厢型车等。",
+      "github_url": "https://github.com/YimMenu-Lua/GunVan",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "gun_van.lua"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "YimMenu-Lua",
+      "repository": "MiniGameHack",
+      "description": "小游戏瞬间完成，跳过黑客攻击过程",
+      "github_url": "https://github.com/YimMenu-Lua/MiniGameHack",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "minigamehack.lua"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "YimMenu-Lua",
+      "repository": "YimResupplier",
+      "description": "一个 Lua 脚本，可立即为 GTA 在线模式中的 MC 业务提供补给。",
+      "github_url": "https://github.com/YimMenu-Lua/YimResupplier",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "YimResupplier.lua"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "YimMenu-Lua",
+      "repository": "DailyCollectibles",
+      "description": "一个 Lua 脚本，可让您查看每日收藏品的位置、传送和更多内容。",
+      "github_url": "https://github.com/YimMenu-Lua/DailyCollectibles",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "daily_collectibles.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "Samurais-Scripts",
+      "description": "一个 Lua 脚本的基础，以角色扮演和在充满广告机器人和有毒作弊者的游戏中享受乐趣为中心。",
+      "github_url": "https://github.com/YimMenu-Lua/Samurais-Scripts",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "includes",
+      "files": []
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "Samurais-Scripts",
+      "description": "一个 Lua 脚本的基础，以角色扮演和在充满广告机器人和有毒作弊者的游戏中享受乐趣为中心。",
+      "github_url": "https://github.com/YimMenu-Lua/Samurais-Scripts",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "samurais_scripts.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "Pessi",
+      "description": "Pessi 主要是一个恢复脚本，有多种方法，从 1M 的快速循环到各种有限的事务。",
+      "github_url": "https://github.com/YimMenu-Lua/Pessi",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "Pessi.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "Harmless-Scripts",
+      "description": "Harmless 为 YimMenu 制作的 Lua 脚本的 Repo。",
+      "github_url": "https://github.com/YimMenu-Lua/Harmless-Scripts",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "HarmlessScript.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "PayphoneHits",
+      "description": "用于电话暗杀的 Lua 脚本。",
+      "github_url": "https://github.com/YimMenu-Lua/PayphoneHits",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "payphone_hits.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "TokyoDrift",
+      "description": "为汽车爱好者增加了一些有趣的功能。",
+      "github_url": "https://github.com/YimMenu-Lua/TokyoDrift",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "tokyodrift.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "UnlockEverything",
+      "description": "解锁一切。",
+      "github_url": "https://github.com/YimMenu-Lua/UnlockEverything",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "WasabiWords.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "RandomEvents",
+      "description": "YimMenu 关于随机事件的 Lua 脚本。。",
+      "github_url": "https://github.com/YimMenu-Lua/RandomEvents",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "random_events.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "FMTransactionTriggerer",
+      "description": "允许您通过 freemode 脚本触发交易。仅供实验使用，使用风险自负。",
+      "github_url": "https://github.com/YimMenu-Lua/FMTransactionTriggerer",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "service_transactions.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "GroundFireworks",
+      "description": "添加了地面烟花，其工作原理类似于旧 GTA 在线模式中的地面烟花。",
+      "github_url": "https://github.com/YimMenu-Lua/GroundFireworks",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "fireworks.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "Casino-Pacino",
+      "description": "允许您通过在所有游戏中作弊来玩赌场游戏，还可以操纵赌场抢劫案。",
+      "github_url": "https://github.com/YimMenu-Lua/Casino-Pacino",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "CasinoPacino.lua",
+        "CasinoPacinoJson.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "Singleplayer-Menu",
+      "description": "简单的单人作弊。",
+      "github_url": "https://github.com/YimMenu-Lua/Singleplayer-Menu",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "SinglePlayer.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "Removed-vehicles",
+      "description": "重新激活通过网页购买已删除车辆的选项。",
+      "github_url": "https://github.com/YimMenu-Lua/Removed-vehicles",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "Removed Vehicles v1.69.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "Sightseeing",
+      "description": "万圣节观光活动的适当脚本。",
+      "github_url": "https://github.com/YimMenu-Lua/Sightseeing",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "sightseeing.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "EliteTracker",
+      "description": "允许您跟踪您的精英挑战进度。",
+      "github_url": "https://github.com/YimMenu-Lua/EliteTracker",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "elite_tracker.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "Cutscene-Player",
+      "description": "允许您播放过场动画。",
+      "github_url": "https://github.com/YimMenu-Lua/Cutscene-Player",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "cutscene_player.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "Internet",
+      "description": "允许您打开各种计算机。",
+      "github_url": "https://github.com/YimMenu-Lua/Internet",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "InternetComputers.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "UltimateMenu",
+      "repository": "UltimateMenu",
+      "description": "一个菜单脚本，具有出色的解锁/抢劫编辑器和支持 kiddions modest menu 和 YimMenu 的金钱选项。",
+      "github_url": "https://github.com/UltimateMenu/UltimateMenu/tree/main/YimMenu",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "/YimMenu",
+      "files": [
+        "Ultimate_Menu For YimMenu V*.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "CrazyZhang666",
+      "repository": "GTA5OnlineLua",
+      "description": "由Alice大佬开发的Kiddion专用Lua脚本，相当于Kiddion增强版DLC，推荐使用。",
+      "github_url": "https://github.com/CrazyZhang666/GTA5OnlineLua/blob/main/Kiddion/AliceLua.zip",
+      "save_path": "%ProgramData%\\GTA5OnlineTools\\Kiddion\\scripts",
+      "folder": "/Kiddion",
+      "files": [
+        "AliceLua.zip"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "UltimateMenu",
+      "repository": "UltimateMenu",
+      "description": "一个菜单脚本，具有出色的解锁/抢劫编辑器和支持 kiddions modest menu 和 YimMenu 的金钱选项。",
+      "github_url": "https://github.com/UltimateMenu/UltimateMenu/tree/main/Kiddions",
+      "save_path": "%ProgramData%\\GTA5OnlineTools\\Kiddion\\scripts",
+      "folder": "/Kiddions",
+      "files": [
+        "Ultimate_Menu_V*.lua"
+      ]
+    }
+  ]
 }
