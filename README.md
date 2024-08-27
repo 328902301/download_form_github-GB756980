@@ -107,7 +107,7 @@ description：该项目的描述
 github_url：github的地址（仅供参考，代码中暂时没用到）
 save_path：保存到本地的路径
 folder：需要下载的文件夹及文件夹下的文件
-files：需要下载的文件夹
+files：需要下载的文件夹（支持通配符）
 ````
 
 ````
