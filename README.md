@@ -9,7 +9,7 @@
 
 ## 使用方法
 ````
-下载最新 Release 中的压缩包。
+下载本项目最新 Release 中的压缩包。
 解压后，双击 download_form_github.exe 。
 打开后，会提示 输入1、2 或 3执行相应的操作。
 若3秒内未输入，则执行默认操作（更新  Github Release 、下载 Github 文件）
@@ -17,12 +17,12 @@
 
 ````
 操作1：更新  Github Release 、下载 Github 文件（默认操作）
-操作2：修改“是否更新  Github Release”的标识"
+操作2：修改“是否更新 Github Release”的标识"
 操作3：修改“是否下载 Github 文件”的标识"
 ````
 
 ````
-操作1：会更新 Release 或下载文件
+操作1：会更新 Release 或 下载文件
 ````
 
 ````
@@ -36,7 +36,7 @@
 
 ````
 操作3：
-读取json中的Release。
+读取 config.json 中的 file。
 将 file 整合成一个有序号的列表
 每个项目都有序号，根据输入的序号列表来改变是否下载的标识
 显示效果为  [√]已启用下载功能：owner/repository（description）
@@ -55,14 +55,14 @@ config.json格式如下：
   "release": [
     {
       "enabled": "true",
-      "owner": "2dust",
-      "repository": "v2rayN",
-      "description": "适用于 Windows 的 GUI 客户端，支持 Xray Core 和 v2fly Core 等。",
+      "owner": "notepad-plus-plus",
+      "repository": "notepad-plus-plus",
+      "description": "Notepad++ 是一个免费的源代码编辑器和记事本替代品，支持多种编程语言和自然语言。",
       "github_url": "https://github.com/2dust/v2rayN",
-      "version": "6.55",
-      "save_path": "D:\\加速",
+      "version": "v8.6.9",
+      "save_path": "D:\\Program\\Editor&IDE\\Notepad++",
       "files": [
-        "v2rayN.zip"
+        "npp.*.portable.x64.7z"
       ]
     }
   ],
@@ -71,12 +71,13 @@ config.json格式如下：
       "enabled": "true",
       "owner": "sch-lda",
       "repository": "yctest2",
-      "description": "此翻译方式为劫持翻译，将Lua传入Yimmenu的显示相关API的参数进行实时替换。",
+      "description": "YimMenu的广告黑名单文件。",
       "github_url": "https://github.com/sch-lda/yctest2/tree/main/Lua",
-      "save_path": "%APPDATA%\\YimMenu\\translations",
-      "folder": "/Lua",
+      "save_path": "%APPDATA%\\YimMenu\\",
+      "folder": "",
       "files": [
-        "lua_lang.json"
+        "ad.json",
+        "ad_rid.json"
       ]
     }
   ]
@@ -98,13 +99,13 @@ github_token 默认为空，可自行设置自己的 github_token。
 它用于下载文件时，避免访问 GitHub API 时达到请求限制。
 如果为空，下载时将不携带 GitHub Token。如果不为空，则携带。
 
-release 和 file 中的 key 如下所示：
+release 和 file 中的参数如下所示：
 enabled：是否启用下载
 owner：仓库所有者
 repository：仓库名称
 version：版本
 description：该项目的描述
-github_url：github的地址（仅供参考，代码中暂时没用到）
+github_url：github的地址（仅供参考，暂无实际作用）
 save_path：保存到本地的路径
 folder：需要下载的文件夹及文件夹下的文件
 files：需要下载的文件夹（支持通配符）
@@ -115,7 +116,9 @@ files：需要下载的文件夹（支持通配符）
 
 若有更新的版本，就会下载最新的release，并同步更新config.json的version。
 
-如果版本号为CI，则下载最新release，且跳过版本检测、不更新version。如果没有release，则下载最新工件的全部文件。
+如果版本号不包含数字，则下载最新release，并同步更新config.json的version。
+
+如果没有release，则下载最新工件的全部文件。
 ````
 
 ````

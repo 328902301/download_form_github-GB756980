@@ -3,6 +3,18 @@
   "release": [
     {
       "enabled": "true",
+      "owner": "notepad-plus-plus",
+      "repository": "notepad-plus-plus",
+      "description": "Notepad++ 是一个免费的源代码编辑器和记事本替代品，支持多种编程语言和自然语言。",
+      "github_url": "https://github.com/2dust/v2rayN",
+      "version": "v8.6.9",
+      "save_path": "D:\\Program\\Editor&IDE\\Notepad++",
+      "files": [
+        "npp.*.portable.x64.7z"
+      ]
+    },
+    {
+      "enabled": "true",
       "owner": "2dust",
       "repository": "v2rayN",
       "description": "适用于 Windows 的 GUI 客户端，支持 Xray Core 和 v2fly Core 等。",
@@ -63,7 +75,20 @@
       "enabled": "true",
       "owner": "sch-lda",
       "repository": "yctest2",
-      "description": "此翻译方式为劫持翻译，将Lua传入Yimmenu的显示相关API的参数进行实时替换。",
+      "description": "YimMenu的广告黑名单文件。",
+      "github_url": "https://github.com/sch-lda/yctest2/tree/main/Lua",
+      "save_path": "%APPDATA%\\YimMenu\\",
+      "folder": "",
+      "files": [
+        "ad.json",
+        "ad_rid.json"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "sch-lda",
+      "repository": "yctest2",
+      "description": "YimMenu的翻译Lua脚本（非在线更新）。使用方法：YimMenu-设置-Lua脚本-Lua翻译设置-语言文件路径修改为（translations/lua_lang.json）。",
       "github_url": "https://github.com/sch-lda/yctest2/tree/main/Lua",
       "save_path": "%APPDATA%\\YimMenu\\translations",
       "folder": "/Lua",
@@ -209,6 +234,30 @@
     {
       "enabled": "false",
       "owner": "YimMenu-Lua",
+      "repository": "CheatCodes",
+      "description": "在 GTA 在线模式中启用作弊码。",
+      "github_url": "https://github.com/YimMenu-Lua/CheatCodes",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "cheat_codes.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "ArcadeGames",
+      "description": "允许您操作街机游戏。",
+      "github_url": "https://github.com/YimMenu-Lua/ArcadeGames",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "arcade_games.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
       "repository": "Samurais-Scripts",
       "description": "一个 Lua 脚本的基础，以角色扮演和在充满广告机器人和有毒作弊者的游戏中享受乐趣为中心。",
       "github_url": "https://github.com/YimMenu-Lua/Samurais-Scripts",
@@ -238,6 +287,18 @@
       "folder": "",
       "files": [
         "Pessi.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "Pesiv2-Updated",
+      "description": "这是一个菜单，可让您触发某些交易以获得 GTA$。有被封禁的风险。",
+      "github_url": "https://github.com/YimMenu-Lua/Pesiv2-Updated",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "PessiV2.lua"
       ]
     },
     {
@@ -411,9 +472,21 @@
     },
     {
       "enabled": "false",
+      "owner": "YimMenu-Lua",
+      "repository": "FullSnacks",
+      "description": "每隔一段时间填满您的零食。",
+      "github_url": "https://github.com/YimMenu-Lua/FullSnacks",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "folder": "",
+      "files": [
+        "FullSnacks.lua"
+      ]
+    },
+    {
+      "enabled": "false",
       "owner": "UltimateMenu",
       "repository": "UltimateMenu",
-      "description": "一个菜单脚本，具有出色的解锁/抢劫编辑器和支持 kiddions modest menu 和 YimMenu 的金钱选项。",
+      "description": "一个菜单脚本，具有出色的解锁/抢劫编辑器和支持 YimMenu 的金钱选项。",
       "github_url": "https://github.com/UltimateMenu/UltimateMenu/tree/main/YimMenu",
       "save_path": "%APPDATA%\\YimMenu\\scripts",
       "folder": "/YimMenu",
@@ -437,7 +510,7 @@
       "enabled": "false",
       "owner": "UltimateMenu",
       "repository": "UltimateMenu",
-      "description": "一个菜单脚本，具有出色的解锁/抢劫编辑器和支持 kiddions modest menu 和 YimMenu 的金钱选项。",
+      "description": "一个菜单脚本，具有出色的解锁/抢劫编辑器和支持 kiddions modest menu 3的金钱选项。",
       "github_url": "https://github.com/UltimateMenu/UltimateMenu/tree/main/Kiddions",
       "save_path": "%ProgramData%\\GTA5OnlineTools\\Kiddion\\scripts",
       "folder": "/Kiddions",
