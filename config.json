@@ -47,6 +47,18 @@
         },
         {
             "enabled": "true",
+            "owner": "PenguLoader",
+            "repository": "PenguLoader",
+            "description": "✨ 终极 JavaScript 插件加载器，构建您无与伦比的 LoL 客户端。",
+            "github_url": "https://github.com/PenguLoader/PenguLoader",
+            "version": "v1.1.3",
+            "save_path": "D:\\Game\\GameTools\\LOL\\Pengu Loader",
+            "files": [
+                "pengu-loader-v*.7z"
+            ]
+        },
+        {
+            "enabled": "true",
             "owner": "cangzhang",
             "repository": "champ-r",
             "description": "又一个英雄联盟帮手",
