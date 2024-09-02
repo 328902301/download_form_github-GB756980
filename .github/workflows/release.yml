@@ -11,7 +11,7 @@ jobs:
 
     env:
       GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}  # 从 GitHub Secrets 中获取用于 GitHub 操作的令牌
-      BASE_VERSION: '1'  # 定义全局基础版本号
+      BASE_VERSION: '2'  # 定义全局基础版本号
 
     steps:
       - name: Checkout code
@@ -70,6 +70,7 @@ jobs:
           pyinstaller --onefile `
             --hidden-import=tqdm `
             --hidden-import=py7zr `
+            --hidden-import=rarfile `
             --hidden-import=urllib3 `
             --hidden-import=requests `
             download_form_github.py

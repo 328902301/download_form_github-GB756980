@@ -1,5 +1,6 @@
 tqdm
 py7zr
+rarfile
 urllib3
 requests
 pyinstaller

@@ -49,7 +49,7 @@
             "enabled": "true",
             "owner": "PenguLoader",
             "repository": "PenguLoader",
-            "description": "✨ 终极 JavaScript 插件加载器，构建您无与伦比的 LoL 客户端。",
+            "description": "终极 JavaScript 插件加载器，构建您无与伦比的 LoL 客户端。",
             "github_url": "https://github.com/PenguLoader/PenguLoader",
             "version": "v1.1.3",
             "save_path": "D:\\Game\\GameTools\\LOL\\Pengu Loader",
@@ -423,7 +423,7 @@
             ]
         },
         {
-            "enabled": "true",
+            "enabled": "false",
             "owner": "YimMenu-Lua",
             "repository": "Removed-vehicles",
             "description": "重新激活通过网页购买已删除车辆的选项。",

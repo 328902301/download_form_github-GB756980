@@ -1,55 +1,55 @@
-# 从 Github更新 Release 或下载文件
-
+# 从 GitHub 更新 Release 或下载文件
 
 ## 简介
-该项目整合了以下两个项目：
-- [download_github_release（下载 Github 最新 Release）](https://github.com/GB756980/download_github_release)
 
+该项目整合了以下两个项目：
+
+- [download_github_release（下载 Github 最新 Release）](https://github.com/GB756980/download_github_release)
 - [download_github_file（下载 Github 文件）](https://github.com/GB756980/download_github_file)
 
 ## 使用方法
-````
-下载本项目最新 Release 中的压缩包。
-解压后，双击 download_form_github.exe 。
-打开后，会提示 输入1、2 或 3执行相应的操作。
-若3秒内未输入，则执行默认操作（更新  Github Release 、下载 Github 文件）
-````
 
-````
-操作1：更新  Github Release 、下载 Github 文件（默认操作）
-操作2：修改“是否更新 Github Release”的标识"
-操作3：修改“是否下载 Github 文件”的标识"
-````
+1. 下载本项目最新 Release 中的压缩包。
+2. 解压后，双击 `download_form_github.exe`。
+3. 打开后，会提示输入 1、2 或 3 执行相应的操作。
+4. 若 3 秒内未输入，则执行默认操作（更新 Github Release 、下载 Github 文件）。
 
-````
-操作1：会更新 Release 或 下载文件
-````
+---
 
-````
-操作2：
-读取 config.json 中的 release
-将 release 整合成一个有序号的列表
-每个项目都有序号，根据输入的序号列表来改变是否下载的标识
-显示效果为  [√]已启用下载功能：owner/repository（description）
-如果原本为false，则该为true；如果原本为true，则改为false
-````
+## 操作说明
 
-````
-操作3：
-读取 config.json 中的 file。
-将 file 整合成一个有序号的列表
-每个项目都有序号，根据输入的序号列表来改变是否下载的标识
-显示效果为  [√]已启用下载功能：owner/repository（description）
-如果原本为false，则该为true；如果原本为true，则改为false
-````
+- **操作 1**：更新 Github Release 、下载 Github 文件（默认操作）
+- **操作 2**：修改“是否更新 Github Release”的标识
+- **操作 3**：修改“是否下载 Github 文件”的标识
+
+### 操作 1
+
+更新最新 Release 或下载文件。
+
+### 操作 2
+
+- 读取 `config.json` 中的 Release。
+- 将 Release 整合成一个有序号的列表。
+- 根据输入的序号列表改变是否下载的标识。
+- 显示效果为 `[√]已启用下载功能：owner/repository（description）`。
+
+### 操作 3
+
+- 读取 `config.json` 中的 File。
+- 将 File 整合成一个有序号的列表。
+- 根据输入的序号列表改变是否下载的标识。
+- 显示效果为 `[√]已启用下载功能：owner/repository（description）`。
+
+---
 
 ## 项目文件描述
-````
-项目有两个文件，分别是 config.json 和 download_form_github.py
-Release的压缩包中有 config.json 和 download_form_github.exe
-````
-config.json格式如下：
-```plaintext
+
+- 项目有两个文件，分别是 `config.json` 和 `download_form_github.py`。
+- Release 的压缩包中包含 `config.json` 和 `download_form_github.exe`。
+
+### config.json 格式如下：
+
+```json
 {
   "github_token": "",
   "release": [
@@ -84,65 +84,70 @@ config.json格式如下：
 }
 ```
 
-````
-下载最新 Release 中的全部文件 或者 下载文件夹下的全部文件："files": []
-指定需要下载的文件名称："files": ["A","B"]
-````
+- 下载最新 Release 中的全部文件或下载文件夹下的全部文件：`"files": []`
+- 指定需要下载的文件名称：`"files": ["A", "B"]`
+
+---
 
 ## 项目详细说明
-````
-config.json 包括 3 种信息，目前有 github_token 、 release 、 file 。
-````
 
-````
-github_token 默认为空，可自行设置自己的 github_token。
-它用于下载文件时，避免访问 GitHub API 时达到请求限制。
-如果为空，下载时将不携带 GitHub Token。如果不为空，则携带。
+`config.json` 包括 3 种信息，目前有 `github_token`、`release`、`file`。
 
-release 和 file 中的参数如下所示：
-enabled：是否启用下载
-owner：仓库所有者
-repository：仓库名称
-version：版本
-description：该项目的描述
-github_url：github的地址（仅供参考，暂无实际作用）
-save_path：保存到本地的路径
-folder：需要下载的文件夹及文件夹下的文件
-files：需要下载的文件夹（支持通配符）
-````
+- **github_token** 默认为空，可自行设置自己的 `github_token`，用于下载文件时，避免访问 GitHub API 时达到请求限制。
+    - 如果为空，下载时将不携带 GitHub Token；如果不为空，则携带。
 
-````
-更新release时，将 config.json 中的版本信息与 api.github 中的最新版进行比较。
+### release 和 file 中的参数如下所示：
 
-若有更新的版本，就会下载最新的release，并同步更新config.json的version。
+| 参数            | 说明                      |
+|---------------|-------------------------|
+| `enabled`     | 是否启用下载                  |
+| `owner`       | 仓库所有者                   |
+| `repository`  | 仓库名称                    |
+| `version`     | 版本                      |
+| `description` | 该项目的描述                  |
+| `github_url`  | GitHub 的地址（仅供参考，暂无实际作用） |
+| `save_path`   | 保存到本地的路径                |
+| `folder`      | 需要下载的文件夹及文件夹下的文件        |
+| `files`       | 需要下载的文件夹（支持通配符）         |
 
-如果版本号不包含数字，则下载最新release，并同步更新config.json的version。
+---
 
-如果没有release，则下载最新工件的全部文件。
-````
+## 更新`release`逻辑
 
-````
-下载file时，目前不会进行文件更新时间的记录和比较。
+- 更新 release 时，将 `config.json` 中的版本信息与 GitHub API 中的最新版进行比较。
+- 若有更新的版本，会下载`最新 Release`，并同步更新 `config.json` 的 version。
+- 如果版本号不包含数字，会直接下载`最新 Release`，并同步更新 `config.json` 的 version。
+- 如果没有`Release`，则下载`最新 Artifact`的全部文件。
 
-如果“folder”为空，“files”不为空，则下载仓库根目录的“files”文件。
+---
 
-如果“folder”不为空（"folder": "/Lua"的情况，当前 folder 仅用来帮助拼接下载链接，不在 save_path 中体现），“files”不为空，则下载“folder”下的“files”文件，不保留当前 folder 结构。
+## 下载 `file` 逻辑
 
-如果“folder”不为空（"folder": "Lua"的情况，当前 folder 在 save_path 中体现），“files”不为空，则下载“folder”下的“files”文件，并保留当前 folder 结构。
+- 下载 `file` 时，目前不会进行文件更新时间的记录和比较。
+- 如果 `folder` 为空，`files` 不为空，则下载仓库根目录的 `files` 文件。
+- 如果 `folder` 不为空（例如 `"folder": "/Lua"`），`files` 不为空，则下载 `folder` 下的 `files` 文件，不保留当前 folder 结构。
+- 如果 `folder` 不为空（例如 `"folder": "Lua"`），`files` 不为空，则下载 `folder` 下的 `files` 文件，并保留当前 folder 结构。
+- 如果 `folder` 不为空（例如 `"folder": "/Lua"`），`files` 为空，则下载 `folder` 下的全部文件（包括子文件夹），不保留当前
+  `folder`结构，但保留子文件夹结构。
+- 如果 `folder` 不为空（例如 `"folder": "Lua"`），`files` 为空，则下载 `folder` 下的全部文件（包括子文件夹），并保留当前
+  `folder` `结构和子文件夹结构。
 
-如果“folder”不为空（"folder": "/Lua"的情况，当前 folder 仅用来帮助拼接下载链接，不在 save_path 中体现），“files”为空，则下载“folder”文件夹下的全部文件（包括子文件夹），不保留当前 folder 结构，但保留子文件夹结构。
+- 对于 `"folder": "/Lua"`， `folder` 仅用来帮助拼接下载链接，不在 `save_path` 中体现。
 
-如果“folder”不为空（"folder": "Lua"的情况，当前 folder 在 save_path 中体现），“files”为空，则下载“folder”下的全部文件（包括子文件夹），并保留当前 folder 结构和子文件夹结构。
-````
+- 对于 `"folder": "Lua"`， `folder` 在 `save_path` 中体现。
 
-````
-download_form_github.py 代码中的函数及其作用如下：
-download_and_unzip 下载解压文件
-download_github_release 下载github的release
-download_github_artifact  下载github的artifact
-download_github_file 下载github的file
-read_or_update_json_file 读写json文件
-modify_project_status 修改是否下载的标识
-setup_logging 设置日志输出
-main 主函数
-````
+---
+
+## `download_form_github.py` 中的函数及其作用
+
+| 函数名称                       | 作用                   |
+|----------------------------|----------------------|
+| `setup_logging`            | 设置日志输出               |
+| `read_or_update_json_file` | 读写 JSON 文件           |
+| `make_request`             | 发送请求                 |
+| `download_and_unzip`       | 下载并解压文件              |
+| `download_github_release`  | 下载 GitHub 的 release  |
+| `download_github_artifact` | 下载 GitHub 的 artifact |
+| `download_github_file`     | 下载 GitHub 的 file     |
+| `modify_project_status`    | 修改是否下载的标识            |
+| `main`                     | 主函数                  |
