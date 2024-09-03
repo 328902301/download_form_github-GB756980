@@ -28,15 +28,15 @@
 
 ### 操作 2
 
-- 读取 `config.json` 中的 Release。
-- 将 Release 整合成一个有序号的列表。
+- 读取 `config.json` 中的`release`。
+- 将`release`整合成一个有序号的列表。
 - 根据输入的序号列表改变是否下载的标识。
 - 显示效果为 `[√]已启用下载功能：owner/repository（description）`。
 
 ### 操作 3
 
-- 读取 `config.json` 中的 File。
-- 将 File 整合成一个有序号的列表。
+- 读取 `config.json` 中的`file`。
+- 将`file`整合成一个有序号的列表。
 - 根据输入的序号列表改变是否下载的标识。
 - 显示效果为 `[√]已启用下载功能：owner/repository（description）`。
 
@@ -93,10 +93,12 @@
 
 `config.json` 包括 3 种信息，目前有 `github_token`、`release`、`file`。
 
-- **github_token** 默认为空，可自行设置自己的 `github_token`，用于下载文件时，避免访问 GitHub API 时达到请求限制。
-    - 如果为空，下载时将不携带 GitHub Token；如果不为空，则携带。
+- **github_token** 
+  - 默认为空，可自行设置自己的 `github_token`，用于下载文件时，避免访问 GitHub API 时达到请求限制。
+  - 如果为空，下载时将不携带 GitHub Token。
+  - 如果不为空，则携带。
 
-### release 和 file 中的参数如下所示：
+- **release**和**file**中的参数如下所示：
 
 | 参数            | 说明                      |
 |---------------|-------------------------|
