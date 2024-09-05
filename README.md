@@ -2,7 +2,10 @@
 
 ## 简介
 
-该项目旨在简化从 GitHub 下载最新版本 Release 和特定文件的过程。用户可以通过简单的配置文件来设置需要下载的项目，程序将自动处理下载和更新逻辑。
+- 该项目旨在简化从 GitHub 下载最新版本 Release 和特定文件的过程。用户可以通过简单的配置文件来设置需要下载的项目，程序将自动处理下载和更新逻辑。
+- 该项目整合了两个项目：
+    - [download_github_release（下载 Github 最新 Release）](https://github.com/GB756980/download_github_release)
+    - [download_github_file（下载 Github 文件）](https://github.com/GB756980/download_github_file)
 
 ## 目录
 
@@ -30,21 +33,21 @@
 - **操作 2**：修改“是否更新 GitHub Release”的标识
 - **操作 3**：修改“是否下载 GitHub 文件”的标识
 
-### 操作 1：更新 Release
+  ### 操作 1：更新 Release
 
-更新最新 Release 或下载文件。
+  更新最新 Release 或下载文件。
 
-### 操作 2：修改 Release 状态
+  ### 操作 2：修改 Release 状态
 
-- 读取 `config.json` 中的 `release`。
-- 将 `release` 整合成一个有序号的列表。
-- 根据输入的序号列表改变是否下载的标识。
+    - 读取 `config.json` 中的 `release`。
+    - 将 `release` 整合成一个有序号的列表。
+    - 根据输入的序号列表改变是否下载的标识。
 
-### 操作 3：修改文件状态
+  ### 操作 3：修改文件状态
 
-- 读取 `config.json` 中的 `file`。
-- 将 `file` 整合成一个有序号的列表。
-- 根据输入的序号列表改变是否下载的标识。
+    - 读取 `config.json` 中的 `file`。
+    - 将 `file` 整合成一个有序号的列表。
+    - 根据输入的序号列表改变是否下载的标识。
 
 ---
 
@@ -60,63 +63,63 @@
 - `config.json` 中的内容可以自定义，但需注意`json`格式。
 - `config.json` 包括 3 种信息，分别是 `github_token`、`release`、`file`。
 
-### `config.json`格式如下
+  ### `config.json`格式如下
 
-```json
-{
-  "github_token": "请填写你自己的 Github Token，自行搜索获取方式",
-  "release": [
+    ```json
     {
-      "enabled": "true",
-      "owner": "notepad-plus-plus",
-      "repository": "notepad-plus-plus",
-      "description": "Notepad++ 是一个免费的源代码编辑器和记事本替代品，支持多种编程语言和自然语言。",
-      "github_url": "https://github.com/2dust/v2rayN",
-      "version": "v8.6.9",
-      "save_path": "D:\\Program\\Editor&IDE\\Notepad++",
-      "files": [
-        "npp.*.portable.x64.7z"
+      "github_token": "请填写你自己的 Github Token，自行搜索获取方式",
+      "release": [
+        {
+          "enabled": "true",
+          "owner": "notepad-plus-plus",
+          "repository": "notepad-plus-plus",
+          "description": "Notepad++ 是一个免费的源代码编辑器和记事本替代品，支持多种编程语言和自然语言。",
+          "github_url": "https://github.com/2dust/v2rayN",
+          "version": "v8.6.9",
+          "save_path": "D:\\Program\\Editor&IDE\\Notepad++",
+          "files": [
+            "npp.*.portable.x64.7z"
+          ]
+        }
+      ],
+      "file": [
+        {
+          "enabled": "true",
+          "owner": "sch-lda",
+          "repository": "yctest2",
+          "description": "YimMenu的广告黑名单文件。",
+          "github_url": "https://github.com/sch-lda/yctest2/tree/main/Lua",
+          "save_path": "%APPDATA%\\YimMenu\\",
+          "folder": "",
+          "files": [
+            "ad.json",
+            "ad_rid.json"
+          ]
+        }
       ]
     }
-  ],
-  "file": [
-    {
-      "enabled": "true",
-      "owner": "sch-lda",
-      "repository": "yctest2",
-      "description": "YimMenu的广告黑名单文件。",
-      "github_url": "https://github.com/sch-lda/yctest2/tree/main/Lua",
-      "save_path": "%APPDATA%\\YimMenu\\",
-      "folder": "",
-      "files": [
-        "ad.json",
-        "ad_rid.json"
-      ]
-    }
-  ]
-}
-```
+    ```
 
-### `github_token`说明
+  ### `github_token`说明
 
-- 默认为空，可自行设置自己的 `github_token`
-- 它用于下载文件时，避免访问 GitHub API 时达到请求限制。
-- 如果为空，下载时不携带 GitHub Token。
-- 如果不为空，下载时携带 GitHub Token。
+    - 默认为空，可自行设置自己的 `github_token`
+    - 它用于下载文件时，避免访问 GitHub API 时达到请求限制。
+    - 如果为空，下载时不携带 GitHub Token。
+    - 如果不为空，下载时携带 GitHub Token。
 
-### `release`和`file`中的参数说明如下所示
+  ### `release`和`file`中的参数说明如下所示
 
-| 参数            | 说明                           |
-|---------------|------------------------------|
-| `enabled`     | 是否启用下载                       |
-| `owner`       | 仓库所有者                        |
-| `repository`  | 仓库名称                         |
-| `version`     | 版本                           |
-| `description` | 该项目在 Github 中的描述             |
-| `github_url`  | GitHub 的 URL 地址（仅供参考，暂无实际作用） |
-| `save_path`   | 保存到本地的路径                     |
-| `folder`      | 需要下载的文件夹及文件夹下的文件（注意 / 的使用）   |
-| `files`       | 需要下载的文件（可为空，支持通配符）           |
+  | 参数            | 说明                           |
+          |---------------|------------------------------|
+  | `enabled`     | 是否启用下载                       |
+  | `owner`       | 仓库所有者                        |
+  | `repository`  | 仓库名称                         |
+  | `version`     | 版本                           |
+  | `description` | 该项目在 Github 中的描述             |
+  | `github_url`  | GitHub 的 URL 地址（仅供参考，暂无实际作用） |
+  | `save_path`   | 保存到本地的路径                     |
+  | `folder`      | 需要下载的文件夹及文件夹下的文件（注意 / 的使用）   |
+  | `files`       | 需要下载的文件（可为空，支持通配符）           |
 
 ---
 
