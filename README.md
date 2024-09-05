@@ -106,17 +106,17 @@
 
   ### `release`和`file`中的参数说明如下所示
 
-  | 参数            | 说明                           |
-                                        |---------------|------------------------------|
-  | `enabled`     | 是否启用下载                       |
-  | `owner`       | 仓库所有者                        |
-  | `repository`  | 仓库名称                         |
-  | `version`     | 版本                           |
-  | `description` | 该项目在 Github 中的描述             |
-  | `github_url`  | GitHub 的 URL 地址（仅供参考，暂无实际作用） |
-  | `save_path`   | 保存到本地的路径                     |
-  | `folder`      | 需要下载的文件夹及文件夹下的文件（注意 / 的使用）   |
-  | `files`       | 需要下载的文件（可为空，支持通配符）           |
+| 参数            | 说明                        |
+|---------------|---------------------------|
+| `enabled`     | 是否启用下载                    |
+| `owner`       | 仓库所有者                     |
+| `repository`  | 仓库名称                      |
+| `version`     | 版本                        |
+| `description` | 该项目在Github中的描述            |
+| `github_url`  | GitHub的URL地址（仅供参考，暂无实际作用） |
+| `save_path`   | 保存到本地的路径                  |
+| `folder`      | 需要下载的文件夹及文件夹下的文件（注意/的使用）  |
+| `files`       | 需要下载的文件（可为空，支持通配符）        |
 
 ---
 
@@ -131,31 +131,36 @@
 
 ## 处理 file 项目逻辑说明
 
-- 下载文件时，目前不会记录和比较文件最后更新时间。
-- 如果 `folder` 为空，`files` 不为空，则下载仓库根目录的 `files` 文件。
-- 如果 `folder` 不为空（例如 `"folder": "/Lua"`），`files` 不为空，则下载 `folder` 下的 `files` 文件，不保留当前 folder 结构。
-- 如果 `folder` 不为空（例如 `"folder": "Lua"`），`files` 不为空，则下载 `folder` 下的 `files` 文件，并保留当前 folder 结构。
-- 如果 `folder` 不为空（例如 `"folder": "/Lua"`），`files` 为空，则下载 `folder` 下的全部文件（包括子文件夹），不保留当前
-  `folder`结构，但保留子文件夹结构。
-- 如果 `folder` 不为空（例如 `"folder": "Lua"`），`files` 为空，则下载 `folder` 下的全部文件（包括子文件夹），并保留当前
-  `folder` `结构和子文件夹结构。
+- 不同的`folder`和`files`填写情况，下载逻辑也不同，具体情况请查看下方表格。
+
+|     `folder`      |     `files`     | 下载内容描述            | 文件夹结构保留情况     |
+|:-----------------:|:---------------:|-------------------|---------------|
+|   `"folder":""`   | `"files":["A"]` | 下载`仓库根目录`的`A`文件   | 不保留`folder`结构 |
+|   `"folder":""`   |  `"files":[]`   | 下载`仓库根目录`的全部文件    | 不保留`folder`结构 |
+| `"folder":"/Lua"` | `"files":["A"]` | 下载`folder`下的`A`文件 | 不保留`folder`结构 |
+| `"folder":"/Lua"` |  `"files":[]`   | 下载`folder`下的全部文件  | 不保留`folder`结构 |
+| `"folder":"Lua"`  | `"files":["A"]` | 下载`folder`下的`A`文件 | 保留`folder`结构  |
+| `"folder":"Lua"`  |  `"files":[]`   | 下载`folder`下的全部文件  | 保留`folder`结构  |
+
 - 对于 `"folder": "/Lua"`， `folder` 仅用来帮助拼接下载链接，不在 `save_path` 中体现。
 - 对于 `"folder": "Lua"`， `folder` 在 `save_path` 中体现。
+- 下载全部文件：`"files": []`
+- 指定需要下载的文件名称：`"files": ["A","B"]`
 
 ---
 
 ## 函数及其作用
 
-| 函数名称                         | 作用                                        |
-|------------------------------|-------------------------------------------|
-| `setup_logging`              | 设置日志记录，配置日志文件和控制台输出的格式。                   |
-| `read_or_update_json_file`   | 读取或更新指定的 JSON 文件，返回读取的数据或写入后的状态。          |
-| `prompt_user_selection`      | 获取用户输入以选择操作，显示可用的操作并在超时后执行默认操作。           |
-| `process_projects`           | 处理项目的更新和下载操作，根据配置文件中的项目进行操作。              |
-| `send_http_request`          | 发起 HTTP 请求并返回响应，支持添加身份验证 Token。           |
-| `download_latest_release`    | 下载最新的 GitHub Release 文件，处理版本检查和下载逻辑。      |
-| `download_latest_artifact`   | 下载最新的 GitHub Artifact 文件，根据提供的仓库信息获取下载链接。 |
-| `download_files_from_github` | 从 GitHub 下载指定的文件，保留文件夹结构并覆盖已存在的文件。        |
-| `download_and_extract_file`  | 从给定 URL 下载并解压文件，支持 ZIP、7Z 和 RAR 格式。       |
-| `toggle_project_status`      | 显示项目列表，允许用户选择项目并切换其下载功能状态。                |
-| `main`                       | 主函数，执行下载任务或修改配置，协调整个程序的执行流程。              |
+| 函数名称                         | 作用                                     |
+|------------------------------|----------------------------------------|
+| `setup_logging`              | 设置日志记录，配置日志文件和控制台输出的格式。                |
+| `read_or_update_json_file`   | 读取或更新指定的JSON文件，返回读取的数据或写入后的状态。         |
+| `prompt_user_selection`      | 获取用户输入以选择操作，显示可用的操作并在超时后执行默认操作。        |
+| `process_projects`           | 处理项目的更新和下载操作，根据配置文件中的项目进行操作。           |
+| `send_http_request`          | 发起HTTP请求并返回响应，支持添加身份验证Token。           |
+| `download_latest_release`    | 下载最新的GitHubRelease文件，处理版本检查和下载逻辑。      |
+| `download_latest_artifact`   | 下载最新的GitHubArtifact文件，根据提供的仓库信息获取下载链接。 |
+| `download_files_from_github` | 从GitHub下载指定的文件，保留文件夹结构并覆盖已存在的文件。       |
+| `download_and_extract_file`  | 从给定URL下载并解压文件，支持ZIP、7Z和RAR格式。          |
+| `toggle_project_status`      | 显示项目列表，允许用户选择项目并切换其下载功能状态。             |
+| `main`                       | 主函数，执行下载任务或修改配置，协调整个程序的执行流程。           |
