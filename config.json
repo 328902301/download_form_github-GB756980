@@ -496,6 +496,18 @@
         },
         {
             "enabled": "false",
+            "owner": "YimMenu-Lua",
+            "repository": "ClawCrane",
+            "description": "旨在修复 Shiny Wasabi Kitty 毛绒玩具的破损抓手偏移，以便您真正可以抓取它。",
+            "github_url": "https://github.com/YimMenu-Lua/ClawCrane",
+            "save_path": "%APPDATA%\\YimMenu\\scripts",
+            "folder": "",
+            "files": [
+                "claw_crane.lua"
+            ]
+        },
+        {
+            "enabled": "false",
             "owner": "UltimateMenu",
             "repository": "UltimateMenu",
             "description": "一个菜单脚本，具有出色的解锁/抢劫编辑器和支持 YimMenu 的金钱选项。",

@@ -7,6 +7,8 @@
     - [download_github_release（下载 Github 最新 Release）](https://github.com/GB756980/download_github_release)
     - [download_github_file（下载 Github 文件）](https://github.com/GB756980/download_github_file)
 
+---
+
 ## 目录
 
 - [使用方法](#使用方法)
@@ -16,6 +18,8 @@
 - [处理 release 项目逻辑说明](#处理-release-项目逻辑说明)
 - [处理 file 项目逻辑说明](#处理-file-项目逻辑说明)
 - [函数及其作用](#函数及其作用)
+
+---
 
 ## 使用方法
 
@@ -30,21 +34,14 @@
 ## 操作说明
 
 - **操作 1**：更新 GitHub Release 、下载 GitHub 文件（默认操作）
+    - 更新最新 Release 或下载文件。
+
 - **操作 2**：修改“是否更新 GitHub Release”的标识
-- **操作 3**：修改“是否下载 GitHub 文件”的标识
-
-  ### 操作 1：更新 Release
-
-  更新最新 Release 或下载文件。
-
-  ### 操作 2：修改 Release 状态
-
     - 读取 `config.json` 中的 `release`。
     - 将 `release` 整合成一个有序号的列表。
     - 根据输入的序号列表改变是否下载的标识。
 
-  ### 操作 3：修改文件状态
-
+- **操作 3**：修改“是否下载 GitHub 文件”的标识
     - 读取 `config.json` 中的 `file`。
     - 将 `file` 整合成一个有序号的列表。
     - 根据输入的序号列表改变是否下载的标识。
@@ -70,16 +67,16 @@
       "github_token": "请填写你自己的 Github Token，自行搜索获取方式",
       "release": [
         {
-          "enabled": "true",
-          "owner": "notepad-plus-plus",
-          "repository": "notepad-plus-plus",
-          "description": "Notepad++ 是一个免费的源代码编辑器和记事本替代品，支持多种编程语言和自然语言。",
-          "github_url": "https://github.com/2dust/v2rayN",
-          "version": "v8.6.9",
-          "save_path": "D:\\Program\\Editor&IDE\\Notepad++",
-          "files": [
-            "npp.*.portable.x64.7z"
-          ]
+            "enabled": "true",
+            "owner": "notepad-plus-plus",
+            "repository": "notepad-plus-plus",
+            "description": "Notepad++ 是一个免费的源代码编辑器和记事本替代品，支持多种编程语言和自然语言。",
+            "github_url": "https://github.com/notepad-plus-plus/notepad-plus-plus",
+            "version": "v8.6.9",
+            "save_path": "D:\\Program\\Editor&IDE\\Notepad++",
+            "files": [
+                "npp.*.portable.x64.7z"
+            ]
         }
       ],
       "file": [
@@ -110,7 +107,7 @@
   ### `release`和`file`中的参数说明如下所示
 
   | 参数            | 说明                           |
-          |---------------|------------------------------|
+                                        |---------------|------------------------------|
   | `enabled`     | 是否启用下载                       |
   | `owner`       | 仓库所有者                        |
   | `repository`  | 仓库名称                         |
@@ -149,16 +146,16 @@
 
 ## 函数及其作用
 
-| 函数名称                       | 作用                        |
-|----------------------------|---------------------------|
-| `setup_logging`            | 设置日志记录                    |
-| `read_or_update_json_file` | 读取或更新 JSON 文件             |
-| `get_user_choice`          | 获取用户输入以选择操作               |
-| `process_projects`         | 处理项目的更新和下载操作              |
-| `make_request`             | 发起 HTTP 请求并返回响应           |
-| `process_github_release`   | 下载最新的 GitHub 的 Release 文件 |
-| `process_github_artifact`  | 下载 GitHub 的 Artifact 文件   |
-| `process_github_file`      | 从 GitHub 下载文件，覆盖已存在的文件    |
-| `download_and_unzip`       | 从给定 URL 下载并解压文件           |
-| `modify_project_status`    | 显示项目列表，允许用户选择项目并切换其下载功能状态 |
-| `main`                     | 主函数，执行下载任务或修改配置           |
+| 函数名称                         | 作用                                        |
+|------------------------------|-------------------------------------------|
+| `setup_logging`              | 设置日志记录，配置日志文件和控制台输出的格式。                   |
+| `read_or_update_json_file`   | 读取或更新指定的 JSON 文件，返回读取的数据或写入后的状态。          |
+| `prompt_user_selection`      | 获取用户输入以选择操作，显示可用的操作并在超时后执行默认操作。           |
+| `process_projects`           | 处理项目的更新和下载操作，根据配置文件中的项目进行操作。              |
+| `send_http_request`          | 发起 HTTP 请求并返回响应，支持添加身份验证 Token。           |
+| `download_latest_release`    | 下载最新的 GitHub Release 文件，处理版本检查和下载逻辑。      |
+| `download_latest_artifact`   | 下载最新的 GitHub Artifact 文件，根据提供的仓库信息获取下载链接。 |
+| `download_files_from_github` | 从 GitHub 下载指定的文件，保留文件夹结构并覆盖已存在的文件。        |
+| `download_and_extract_file`  | 从给定 URL 下载并解压文件，支持 ZIP、7Z 和 RAR 格式。       |
+| `toggle_project_status`      | 显示项目列表，允许用户选择项目并切换其下载功能状态。                |
+| `main`                       | 主函数，执行下载任务或修改配置，协调整个程序的执行流程。              |
