@@ -142,8 +142,8 @@
 | `"folder":"Lua"`  | `"files":["A"]` | 下载`folder`下的`A`文件 | 保留`folder`结构  |
 | `"folder":"Lua"`  |  `"files":[]`   | 下载`folder`下的全部文件  | 保留`folder`结构  |
 
-- 对于 `"folder": "/Lua"`， `folder` 仅用来帮助拼接下载链接，不在 `save_path` 中体现。
-- 对于 `"folder": "Lua"`， `folder` 在 `save_path` 中体现。
+- 对于 `"folder": "/Lua"`， `folder` 仅用来帮助拼接下载链接，不在保存路径中体现。
+- 对于 `"folder": "Lua"`， `folder` 在保存路径中体现。
 - 下载全部文件：`"files": []`
 - 指定需要下载的文件名称：`"files": ["A","B"]`
 
