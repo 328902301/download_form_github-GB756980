@@ -1,14 +1,15 @@
-import re
-import os
+import fnmatch
 import json
+import logging
+import os
+import re
+import threading
+import zipfile
+
 import py7zr
 import rarfile
-import zipfile
-import urllib3
-import logging
 import requests
-import fnmatch
-import threading
+import urllib3
 from tqdm import tqdm
 
 # 定义配置文件和日志文件的名称
@@ -507,7 +508,6 @@ def download_and_extract_file(url, save_path, file_name, token=None):
         返回:
             str: 下载的文件路径，如果下载失败则返回 None。
         """
-
         try:
             response = send_http_request(url, token, stream=True)  # 发送请求下载文件
             if response is None:
@@ -516,6 +516,7 @@ def download_and_extract_file(url, save_path, file_name, token=None):
             total_size = int(response.headers.get('content-length', 0)) or 1  # 文件总大小
             os.makedirs(save_path, exist_ok=True)  # 创建保存路径
 
+            file_save_path = os.path.join(save_path, file_name)
             # 以流式方式写入下载内容
             with open(file_save_path, 'wb') as f, tqdm(
                     desc=file_name,
@@ -548,22 +549,73 @@ def download_and_extract_file(url, save_path, file_name, token=None):
         返回:
             bool: 解压是否成功。
         """
-        try:
+
+        def extract_to_temp(file_path, temp_extract_path):
             if file_path.endswith('.zip'):
                 with zipfile.ZipFile(file_path, 'r') as zip_ref:
-                    zip_ref.extractall(extract_path)  # 解压 ZIP 文件
+                    zip_ref.extractall(temp_extract_path)  # 解压 ZIP 文件
                 logging.info(f"已成功解压 ZIP 文件: {os.path.basename(file_path)}")
             elif file_path.endswith('.7z'):
                 with py7zr.SevenZipFile(file_path, mode='r') as archive:
-                    archive.extractall(path=extract_path)  # 解压 7Z 文件
+                    archive.extractall(path=temp_extract_path)  # 解压 7Z 文件
                 logging.info(f"已成功解压 7Z 文件: {os.path.basename(file_path)}")
             elif file_path.endswith('.rar'):
                 with rarfile.RarFile(file_path) as rar_ref:
-                    rar_ref.extractall(extract_path)  # 解压 RAR 文件
+                    rar_ref.extractall(temp_extract_path)  # 解压 RAR 文件
                 logging.info(f"已成功解压 RAR 文件: {os.path.basename(file_path)}")
             else:
-                logging.warning(f"不支持的压缩文件格式: {file_name}")
+                logging.warning(f"不支持的压缩文件格式: {file_path}")
                 return False
+            return True
+
+        def move_and_handle_conflict(src, dst):
+            if os.path.exists(dst):
+                if os.path.isdir(dst):
+                    # 如果目标是目录，递归删除目录
+                    import shutil
+                    shutil.rmtree(dst)
+                else:
+                    os.remove(dst)
+            os.rename(src, dst)
+
+        try:
+            temp_extract_path = os.path.join(extract_path, "temp_extract")
+            os.makedirs(temp_extract_path, exist_ok=True)
+            if not extract_to_temp(file_path, temp_extract_path):
+                return False
+
+            # 检查是否有一个顶层文件夹
+            top_level_dirs = [name for name in os.listdir(temp_extract_path) if
+                              os.path.isdir(os.path.join(temp_extract_path, name))]
+            top_level_files = [name for name in os.listdir(temp_extract_path) if
+                               os.path.isfile(os.path.join(temp_extract_path, name))]
+
+            if len(top_level_dirs) == 1 and len(top_level_files) == 0:
+                # 只有一个顶层文件夹
+                top_level_dir = top_level_dirs[0]
+                top_level_dir_path = os.path.join(temp_extract_path, top_level_dir)
+
+                # 将顶层文件夹中的所有文件和文件夹移动到目标解压路径
+                for item in os.listdir(top_level_dir_path):
+                    s = os.path.join(top_level_dir_path, item)
+                    d = os.path.join(extract_path, item)
+                    move_and_handle_conflict(s, d)
+            else:
+                # 没有顶层文件夹，直接移动所有文件和文件夹到目标解压路径
+                for item in os.listdir(temp_extract_path):
+                    s = os.path.join(temp_extract_path, item)
+                    d = os.path.join(extract_path, item)
+                    move_and_handle_conflict(s, d)
+
+            # 删除临时解压路径
+            for item in os.listdir(temp_extract_path):
+                item_path = os.path.join(temp_extract_path, item)
+                if os.path.isdir(item_path):
+                    os.rmdir(item_path)
+                else:
+                    os.remove(item_path)
+            os.rmdir(temp_extract_path)
+
             return True
         except Exception as e:
             logging.error(f"解压文件时发生错误: {e}")

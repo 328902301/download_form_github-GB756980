@@ -32,7 +32,7 @@
             "description": "适用于 Windows 的 GUI 客户端，支持 Xray Core 和 v2fly Core 等。",
             "github_url": "https://github.com/2dust/v2rayN",
             "version": "6.55",
-            "save_path": "D:\\加速",
+            "save_path": "D:\\加速\\V2rayN",
             "files": [
                 "v2rayN.zip"
             ]
