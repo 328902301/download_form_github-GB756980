@@ -15,6 +15,18 @@
         },
         {
             "enabled": "true",
+            "owner": "RayWangQvQ",
+            "repository": "BiliBiliToolPro",
+            "description": "B 站（bilibili）自动任务工具，支持docker、青龙、k8s等多种部署方式。敏感肌也能用。",
+            "github_url": "https://github.com/RayWangQvQ/BiliBiliToolPro",
+            "version": "2.1.1",
+            "save_path": "D:\\影音\\哔哩哔哩\\bilibili-tool-pro",
+            "files": [
+                "bilibili-tool-pro-v*-win-x64.zip"
+            ]
+        },
+        {
+            "enabled": "true",
             "owner": "2dust",
             "repository": "v2rayN",
             "description": "适用于 Windows 的 GUI 客户端，支持 Xray Core 和 v2fly Core 等。",
