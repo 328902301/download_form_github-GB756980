@@ -1,6 +1,7 @@
 name: Pack and Release # 这个 GitHub Actions 工作流程的名称
 
 on:
+  workflow_dispatch:  # 允许手动触发工作流
   push:
     branches:
       - main  # 当 main 分支有推送事件时触发此工作流程
