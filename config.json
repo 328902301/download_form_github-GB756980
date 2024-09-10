@@ -27,6 +27,30 @@
         },
         {
             "enabled": "true",
+            "owner": "clash-verge-rev",
+            "repository": "clash-verge-rev",
+            "description": "Clash Verge的延续-基于Tauri（Windows，MacOS，Linux）的Clash Meta GUI。",
+            "github_url": "https://github.com/clash-verge-rev/clash-verge-rev",
+            "version": "v1.7.7",
+            "save_path": "D:\\加速\\Clash Verge",
+            "files": [
+                "Clash.Verge_*_x64_portable.zip"
+            ]
+        },
+        {
+            "enabled": "true",
+            "owner": "libnyanpasu",
+            "repository": "clash-nyanpasu",
+            "description": "Clash Nyanpasu～(∠・ω< )⌒☆​",
+            "github_url": "https://github.com/libnyanpasu/clash-nyanpasu",
+            "version": "v1.6.1",
+            "save_path": "D:\\加速\\Clash Nyanpasu",
+            "files": [
+                "Clash.Nyanpasu_*_x64_portable.zip"
+            ]
+        },
+        {
+            "enabled": "true",
             "owner": "2dust",
             "repository": "v2rayN",
             "description": "适用于 Windows 的 GUI 客户端，支持 Xray Core 和 v2fly Core 等。",
