@@ -104,6 +104,18 @@
             "files": [
                 "champr-v*.zip"
             ]
+        },
+        {
+            "enabled": "true",
+            "owner": "p0358",
+            "repository": "Fuck_off_EA_App",
+            "description": "继续使用Origin而不是EA应用程序",
+            "github_url": "https://github.com/p0358/Fuck_off_EA_App",
+            "version": "v2.0.2-b7",
+            "save_path": "D:\\Game\\Origin",
+            "files": [
+                "version.dll"
+            ]
         }
     ],
     "file": [
