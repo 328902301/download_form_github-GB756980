@@ -74,6 +74,7 @@
             "github_url": "https://github.com/notepad-plus-plus/notepad-plus-plus",
             "version": "v8.6.9",
             "save_path": "D:\\Program\\Editor&IDE\\Notepad++",
+            "extract_flag": true,
             "files": [
                 "npp.*.portable.x64.7z"
             ]
@@ -87,6 +88,7 @@
           "description": "YimMenu的广告黑名单文件。",
           "github_url": "https://github.com/sch-lda/yctest2/tree/main/Lua",
           "save_path": "%APPDATA%\\YimMenu\\",
+          "extract_flag": true,
           "folder": "",
           "files": [
             "ad.json",
@@ -106,17 +108,18 @@
 
   ### `release`和`file`中的参数说明如下所示
 
-| 参数            | 说明                        |
-|---------------|---------------------------|
-| `enabled`     | 是否启用下载                    |
-| `owner`       | 仓库所有者                     |
-| `repository`  | 仓库名称                      |
-| `version`     | 版本                        |
-| `description` | 该项目在Github中的描述            |
-| `github_url`  | GitHub的URL地址（仅供参考，暂无实际作用） |
-| `save_path`   | 保存到本地的路径                  |
-| `folder`      | 需要下载的文件夹及文件夹下的文件（注意/的使用）  |
-| `files`       | 需要下载的文件（可为空，支持通配符）        |
+| 参数             | 说明                        |
+|----------------|---------------------------|
+| `enabled`      | 是否启用下载                    |
+| `owner`        | 仓库所有者                     |
+| `repository`   | 仓库名称                      |
+| `version`      | 版本                        |
+| `description`  | 该项目在Github中的描述            |
+| `github_url`   | GitHub的URL地址（仅供参考，暂无实际作用） |
+| `save_path`    | 保存到本地的路径                  |
+| `extract_flag` | 下载后是否解压                   |
+| `folder`       | 需要下载的文件夹及文件夹下的文件（注意/的使用）  |
+| `files`        | 需要下载的文件（可为空，支持通配符）        |
 
 ---
 

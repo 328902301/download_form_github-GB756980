@@ -9,6 +9,7 @@
             "github_url": "https://github.com/notepad-plus-plus/notepad-plus-plus",
             "version": "v8.7",
             "save_path": "D:\\Program\\Editor&IDE\\Notepad++",
+            "extract_flag": true,
             "files": [
                 "npp.*.portable.x64.7z"
             ]
@@ -21,6 +22,7 @@
             "github_url": "https://github.com/RayWangQvQ/BiliBiliToolPro",
             "version": "2.1.1",
             "save_path": "D:\\影音\\哔哩哔哩\\bilibili-tool-pro",
+            "extract_flag": true,
             "files": [
                 "bilibili-tool-pro-v*-win-x64.zip"
             ]
@@ -33,6 +35,7 @@
             "github_url": "https://github.com/2dust/v2rayN",
             "version": "6.55",
             "save_path": "D:\\加速\\V2rayN",
+            "extract_flag": true,
             "files": [
                 "v2rayN.zip"
             ]
@@ -45,6 +48,7 @@
             "github_url": "https://github.com/clash-verge-rev/clash-verge-rev",
             "version": "v1.7.7",
             "save_path": "D:\\加速\\Clash Verge",
+            "extract_flag": true,
             "files": [
                 "Clash.Verge_*_x64_portable.zip"
             ]
@@ -57,8 +61,22 @@
             "github_url": "https://github.com/libnyanpasu/clash-nyanpasu",
             "version": "v1.6.1",
             "save_path": "D:\\加速\\Clash Nyanpasu",
+            "extract_flag": true,
             "files": [
                 "Clash.Nyanpasu_*_x64_portable.zip"
+            ]
+        },
+        {
+            "enabled": "true",
+            "owner": "SagerNet",
+            "repository": "sing-box",
+            "description": "通用代理平台",
+            "github_url": "https://github.com/SagerNet/sing-box",
+            "version": "v1.9.5",
+            "save_path": "D:\\加速\\sing-box",
+            "extract_flag": true,
+            "files": [
+                "sing-box-*-windows-386.zip"
             ]
         },
         {
@@ -69,6 +87,7 @@
             "github_url": "https://github.com/6yy66yy/legod-auto-pause",
             "version": "v2.2.3_fix",
             "save_path": "D:\\加速\\雷神加速器\\自动暂停",
+            "extract_flag": true,
             "files": []
         },
         {
@@ -79,6 +98,7 @@
             "github_url": "https://github.com/SnxiaLianXin/LOLAutomationTools",
             "version": "v2.6.0.0",
             "save_path": "D:\\Game\\GameTools\\LOL\\LOLAutomationTools",
+            "extract_flag": true,
             "files": []
         },
         {
@@ -89,6 +109,7 @@
             "github_url": "https://github.com/PenguLoader/PenguLoader",
             "version": "v1.1.3",
             "save_path": "D:\\Game\\GameTools\\LOL\\Pengu Loader",
+            "extract_flag": true,
             "files": [
                 "pengu-loader-v*.7z"
             ]
@@ -101,6 +122,7 @@
             "github_url": "https://github.com/cangzhang/champ-r",
             "version": "v2.0.2-b7",
             "save_path": "D:\\Game\\GameTools\\LOL\\ChampR\\V2",
+            "extract_flag": true,
             "files": [
                 "champr-v*.zip"
             ]
@@ -111,8 +133,9 @@
             "repository": "Fuck_off_EA_App",
             "description": "继续使用Origin而不是EA应用程序",
             "github_url": "https://github.com/p0358/Fuck_off_EA_App",
-            "version": "v2.0.2-b7",
+            "version": "v3",
             "save_path": "D:\\Game\\Origin",
+            "extract_flag": true,
             "files": [
                 "version.dll"
             ]
@@ -126,6 +149,7 @@
             "description": "description。",
             "github_url": "https://github.com/",
             "save_path": "%APPDATA%",
+            "extract_flag": true,
             "folder": "/folder",
             "files": [
                 "fileA",

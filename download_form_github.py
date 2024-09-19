@@ -157,10 +157,11 @@ def process_projects(config, github_token):
             repo = project.get("repository")
             version = project.get("version")
             save_path = os.path.expandvars(project.get("save_path"))
+            extract_flag = project.get("extract_flag")
             files = project.get("files")
 
             logging.info(f"即将处理项目: {owner}/{repo}")
-            download_latest_release(owner, repo, version, save_path, files, github_token)
+            download_latest_release(owner, repo, version, save_path, extract_flag, files, github_token)
             logging.info(f"当前项目已处理完成: {owner}/{repo}")
             logging.info(f"{'-' * 100}")
         else:
@@ -179,11 +180,12 @@ def process_projects(config, github_token):
             owner = project.get("owner")
             repo = project.get("repository")
             save_path = os.path.expandvars(project.get("save_path"))
+            extract_flag = project.get("extract_flag")
             folder = project.get("folder")
             files = project.get("files")
 
             logging.info(f"即将处理项目: {owner}/{repo}")
-            download_files_from_github(owner, repo, save_path, folder, files, github_token)
+            download_files_from_github(owner, repo, save_path, extract_flag, folder, files, github_token)
             logging.info(f"当前项目已处理完成: {owner}/{repo}")
             logging.info(f"{'-' * 100}")
         else:
@@ -224,7 +226,7 @@ def send_http_request(url, token=None, stream=False):
     return None
 
 
-def download_latest_release(owner, repo, version, save_path, files=None, token=None):
+def download_latest_release(owner, repo, version, save_path, extract_flag=None, files=None, token=None):
     """
     下载最新的 GitHub Release 文件
 
@@ -273,10 +275,10 @@ def download_latest_release(owner, repo, version, save_path, files=None, token=N
                 for asset in assets:
                     file_name = asset['name']
                     file_url = asset['browser_download_url']
-                    download_and_extract_file(file_url, save_path, file_name, token)
+                    download_and_extract_file(file_url, save_path, extract_flag, file_name, token)
             else:
                 logging.info(f"项目 {owner}/{repo} 没有可用的 Release, 尝试下载最新的 Artifact")
-                download_latest_artifact(owner, repo, save_path, token=token)
+                download_latest_artifact(owner, repo, save_path, extract_flag, token=token)
 
             update_version_in_config(owner, repo, latest_version)
 
@@ -289,7 +291,7 @@ def download_latest_release(owner, repo, version, save_path, files=None, token=N
                 file_name = asset['name']
                 if any(fnmatch.fnmatch(file_name, pattern) for pattern in files_to_download):
                     file_url = asset['browser_download_url']
-                    download_and_extract_file(file_url, save_path, file_name, token)
+                    download_and_extract_file(file_url, save_path, extract_flag, file_name, token)
 
             update_version_in_config(owner, repo, latest_version)
 
@@ -300,7 +302,7 @@ def download_latest_release(owner, repo, version, save_path, files=None, token=N
         logging.error(f"处理 Release 时发生错误: {e}")
 
 
-def download_latest_artifact(owner, repo, save_path, token=None):
+def download_latest_artifact(owner, repo, save_path, extract_flag=None, token=None):
     """
     下载 GitHub 的 Artifact 文件
 
@@ -326,14 +328,14 @@ def download_latest_artifact(owner, repo, save_path, token=None):
             artifact_name = f"{latest_artifact['name']}.zip"
 
             # 下载并解压 Artifact 文件
-            download_and_extract_file(artifact_url, save_path, artifact_name, token)
+            download_and_extract_file(artifact_url, save_path, extract_flag, artifact_name, token)
         else:
             logging.info("未找到 Artifact 文件。")
     except Exception as e:
         logging.error(f"处理 Github Artifact 时, 发生错误: {e}")
 
 
-def download_files_from_github(owner, repo, save_path, folder=None, files=None, token=None):
+def download_files_from_github(owner, repo, save_path, extract_flag=None, folder=None, files=None, token=None):
     """
     从 GitHub Raw 下载文件，保留文件夹结构，并覆盖已存在的文件
 
@@ -364,7 +366,7 @@ def download_files_from_github(owner, repo, save_path, folder=None, files=None, 
             os.makedirs(file_dir, exist_ok=True)
 
         # 下载文件并解压
-        download_and_extract_file(file_url, file_dir, file_name, token)
+        download_and_extract_file(file_url, file_dir, file_name, extract_flag, token)
 
     def fetch_files_in_directory(folder_url):
         """
@@ -431,7 +433,7 @@ def download_files_from_github(owner, repo, save_path, folder=None, files=None, 
         logging.error(f"下载 GitHub 文件时发生错误: {e}")
 
 
-def download_and_extract_file(url, save_path, file_name, token=None):
+def download_and_extract_file(url, save_path, extract_flag, file_name, token=None):
     """
     从给定 URL 下载并解压文件
 
@@ -639,10 +641,11 @@ def download_and_extract_file(url, save_path, file_name, token=None):
         if downloaded_file_path:
             # 如果下载的文件是压缩文件，则解压
             logging.info(f"文件成功下载到: {file_save_path}")
-            if downloaded_file_path.endswith(('.zip', '.7z', '.rar')):
-                if extract_file(downloaded_file_path, save_path):
-                    os.remove(downloaded_file_path)  # 删除压缩文件
-                    logging.info(f"已成功删除压缩文件: {file_name}")
+            if extract_flag:
+                if downloaded_file_path.endswith(('.zip', '.7z', '.rar')):
+                    if extract_file(downloaded_file_path, save_path):
+                        os.remove(downloaded_file_path)  # 删除压缩文件
+                        logging.info(f"已成功删除压缩文件: {file_name}")
 
         return True
     except Exception as e:
