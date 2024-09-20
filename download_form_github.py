@@ -1,15 +1,14 @@
-import fnmatch
-import json
-import logging
 import os
 import re
-import threading
-import zipfile
-
+import json
 import py7zr
 import rarfile
-import requests
+import zipfile
 import urllib3
+import logging
+import fnmatch
+import requests
+import threading
 from tqdm import tqdm
 
 # 定义配置文件和日志文件的名称
