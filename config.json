@@ -2,7 +2,7 @@
   "github_token": "",
   "release": [
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "notepad-plus-plus",
       "repository": "notepad-plus-plus",
       "description": "Notepad++ 是一个免费的源代码编辑器和记事本替代品，支持多种编程语言和自然语言。",
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "RayWangQvQ",
       "repository": "BiliBiliToolPro",
       "description": "B 站（bilibili）自动任务工具，支持docker、青龙、k8s等多种部署方式。敏感肌也能用。",
@@ -30,7 +30,7 @@
       ]
     },
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "2dust",
       "repository": "v2rayN",
       "description": "适用于 Windows 的 GUI 客户端，支持 Xray Core 和 v2fly Core 等。",
@@ -44,7 +44,7 @@
       ]
     },
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "clash-verge-rev",
       "repository": "clash-verge-rev",
       "description": "Clash Verge的延续-基于Tauri（Windows，MacOS，Linux）的Clash Meta GUI。",
@@ -58,7 +58,7 @@
       ]
     },
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "libnyanpasu",
       "repository": "clash-nyanpasu",
       "description": "Clash Nyanpasu～(∠・ω< )⌒☆​",
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "GUI-for-Cores",
       "repository": "GUI.for.SingBox",
       "description": "SingBox 的 GUI",
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "SagerNet",
       "repository": "sing-box",
       "description": "通用代理平台",
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "6yy66yy",
       "repository": "legod-auto-pause",
       "description": "雷神加速器时长自动暂停",
@@ -112,7 +112,7 @@
       "files": []
     },
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "SnxiaLianXin",
       "repository": "LOLAutomationTools",
       "description": "LOL（英雄联盟）自动化工具",
@@ -124,7 +124,7 @@
       "files": []
     },
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "PenguLoader",
       "repository": "PenguLoader",
       "description": "终极 JavaScript 插件加载器，构建您无与伦比的 LoL 客户端。",
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "cangzhang",
       "repository": "champ-r",
       "description": "又一个英雄联盟帮手",
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "p0358",
       "repository": "Fuck_off_EA_App",
       "description": "继续使用Origin而不是EA应用程序",
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "sch-lda",
       "repository": "yctest2",
       "description": "GTA5线上小助手-Yimmenu持续集成及其他在线资源。",
@@ -182,7 +182,7 @@
   ],
   "file": [
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "sch-lda",
       "repository": "yctest2",
       "description": "YimMenu的广告黑名单文件。",
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "sch-lda",
       "repository": "yctest2",
       "description": "YimMenu的翻译Lua脚本功能（非在线更新）。使用方法：YimMenu-设置-Lua脚本-Lua翻译设置-语言文件路径修改为（translations/lua_lang.json）。",
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "Deadlineem",
       "repository": "Extras-Addon-for-YimMenu",
       "description": "这个插件为YimMenu提供了额外的工具，这些工具还不是独立基础版本的一部分。",
@@ -224,7 +224,7 @@
       ]
     },
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "sch-lda",
       "repository": "SCH-LUA-YIMMENU",
       "description": "discord用户yeahsch的自用脚本,第一个开源yim开发者示例lua",
@@ -237,7 +237,7 @@
       ]
     },
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "wangzixuank",
       "repository": "YimMenu-HeistLua",
       "description": "佩岛/赌场/末日任务脚本",
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "sch-lda",
       "repository": "GTA5OnlineLua",
       "description": "一款由Alice大佬开发的YimMenu使用的Lua脚本",
@@ -263,7 +263,7 @@
       ]
     },
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "TCRoid",
       "repository": "YimMenu-Lua-RScript",
       "description": "载具、NPC实体管理控制，任务助手，和其它若干功能",
@@ -277,7 +277,7 @@
       ]
     },
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "TCRoid",
       "repository": "YimMenu-Lua-RScript",
       "description": "载具、NPC实体管理控制，任务助手，和其它若干功能",
@@ -290,7 +290,7 @@
       ]
     },
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "TCRoid",
       "repository": "YimMenu-Lua-RS-Missions",
       "description": "单人启动任务，直接完成任务，无需前置直接启动抢劫终章差事",
@@ -303,7 +303,7 @@
       ]
     },
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "YimMenu-Lua",
       "repository": "GunVan",
       "description": "允许您编辑武装厢型车等。",
@@ -316,7 +316,7 @@
       ]
     },
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "YimMenu-Lua",
       "repository": "MiniGameHack",
       "description": "小游戏瞬间完成，跳过黑客攻击过程",
@@ -329,7 +329,7 @@
       ]
     },
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "YimMenu-Lua",
       "repository": "YimResupplier",
       "description": "一个 Lua 脚本，可立即为 GTA 在线模式中的 MC 业务提供补给。",
@@ -342,7 +342,7 @@
       ]
     },
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "YimMenu-Lua",
       "repository": "DailyCollectibles",
       "description": "一个 Lua 脚本，可让您查看每日收藏品的位置、传送和更多内容。",
@@ -355,7 +355,7 @@
       ]
     },
     {
-      "enabled": "false",
+      "enabled": false,
       "owner": "YimMenu-Lua",
       "repository": "CheatCodes",
       "description": "在 GTA 在线模式中启用作弊码。",
@@ -368,7 +368,7 @@
       ]
     },
     {
-      "enabled": "false",
+      "enabled": false,
       "owner": "YimMenu-Lua",
       "repository": "ArcadeGames",
       "description": "允许您操作街机游戏。",
@@ -381,7 +381,7 @@
       ]
     },
     {
-      "enabled": "false",
+      "enabled": false,
       "owner": "YimMenu-Lua",
       "repository": "Samurais-Scripts",
       "description": "一个 Lua 脚本的基础，以角色扮演和在充满广告机器人和有毒作弊者的游戏中享受乐趣为中心。",
@@ -392,7 +392,7 @@
       "files": []
     },
     {
-      "enabled": "false",
+      "enabled": false,
       "owner": "YimMenu-Lua",
       "repository": "Samurais-Scripts",
       "description": "一个 Lua 脚本的基础，以角色扮演和在充满广告机器人和有毒作弊者的游戏中享受乐趣为中心。",
@@ -405,7 +405,7 @@
       ]
     },
     {
-      "enabled": "false",
+      "enabled": false,
       "owner": "YimMenu-Lua",
       "repository": "Pessi",
       "description": "Pessi 主要是一个恢复脚本，有多种方法，从 1M 的快速循环到各种有限的事务。",
@@ -418,7 +418,7 @@
       ]
     },
     {
-      "enabled": "false",
+      "enabled": false,
       "owner": "YimMenu-Lua",
       "repository": "Pesiv2-Updated",
       "description": "这是一个菜单，可让您触发某些交易以获得 GTA$。有被封禁的风险。",
@@ -431,7 +431,7 @@
       ]
     },
     {
-      "enabled": "false",
+      "enabled": false,
       "owner": "YimMenu-Lua",
       "repository": "Harmless-Scripts",
       "description": "Harmless 为 YimMenu 制作的 Lua 脚本的 Repo。",
@@ -444,7 +444,7 @@
       ]
     },
     {
-      "enabled": "false",
+      "enabled": false,
       "owner": "YimMenu-Lua",
       "repository": "PayphoneHits",
       "description": "用于电话暗杀的 Lua 脚本。",
@@ -457,7 +457,7 @@
       ]
     },
     {
-      "enabled": "false",
+      "enabled": false,
       "owner": "YimMenu-Lua",
       "repository": "TokyoDrift",
       "description": "为汽车爱好者增加了一些有趣的功能。",
@@ -470,7 +470,7 @@
       ]
     },
     {
-      "enabled": "false",
+      "enabled": false,
       "owner": "YimMenu-Lua",
       "repository": "UnlockEverything",
       "description": "解锁一切。",
@@ -483,7 +483,7 @@
       ]
     },
     {
-      "enabled": "false",
+      "enabled": false,
       "owner": "YimMenu-Lua",
       "repository": "RandomEvents",
       "description": "YimMenu 关于随机事件的 Lua 脚本。。",
@@ -496,7 +496,7 @@
       ]
     },
     {
-      "enabled": "false",
+      "enabled": false,
       "owner": "YimMenu-Lua",
       "repository": "FMTransactionTriggerer",
       "description": "允许您通过 freemode 脚本触发交易。仅供实验使用，使用风险自负。",
@@ -509,7 +509,7 @@
       ]
     },
     {
-      "enabled": "false",
+      "enabled": false,
       "owner": "YimMenu-Lua",
       "repository": "GroundFireworks",
       "description": "添加了地面烟花，其工作原理类似于旧 GTA 在线模式中的地面烟花。",
@@ -522,7 +522,7 @@
       ]
     },
     {
-      "enabled": "false",
+      "enabled": false,
       "owner": "YimMenu-Lua",
       "repository": "Casino-Pacino",
       "description": "允许您通过在所有游戏中作弊来玩赌场游戏，还可以操纵赌场抢劫案。",
@@ -536,7 +536,7 @@
       ]
     },
     {
-      "enabled": "false",
+      "enabled": false,
       "owner": "YimMenu-Lua",
       "repository": "Singleplayer-Menu",
       "description": "简单的单人作弊。",
@@ -549,7 +549,7 @@
       ]
     },
     {
-      "enabled": "false",
+      "enabled": false,
       "owner": "YimMenu-Lua",
       "repository": "Removed-vehicles",
       "description": "重新激活通过网页购买已删除车辆的选项。",
@@ -562,7 +562,7 @@
       ]
     },
     {
-      "enabled": "false",
+      "enabled": false,
       "owner": "YimMenu-Lua",
       "repository": "Sightseeing",
       "description": "万圣节观光活动的适当脚本。",
@@ -575,7 +575,7 @@
       ]
     },
     {
-      "enabled": "false",
+      "enabled": false,
       "owner": "YimMenu-Lua",
       "repository": "EliteTracker",
       "description": "允许您跟踪您的精英挑战进度。",
@@ -588,7 +588,7 @@
       ]
     },
     {
-      "enabled": "false",
+      "enabled": false,
       "owner": "YimMenu-Lua",
       "repository": "Cutscene-Player",
       "description": "允许您播放过场动画。",
@@ -601,7 +601,7 @@
       ]
     },
     {
-      "enabled": "false",
+      "enabled": false,
       "owner": "YimMenu-Lua",
       "repository": "Internet",
       "description": "允许您打开各种计算机。",
@@ -614,7 +614,7 @@
       ]
     },
     {
-      "enabled": "false",
+      "enabled": false,
       "owner": "YimMenu-Lua",
       "repository": "FullSnacks",
       "description": "每隔一段时间填满您的零食。",
@@ -627,7 +627,7 @@
       ]
     },
     {
-      "enabled": "false",
+      "enabled": false,
       "owner": "YimMenu-Lua",
       "repository": "ClawCrane",
       "description": "旨在修复 Shiny Wasabi Kitty 毛绒玩具的破损抓手偏移，以便您真正可以抓取它。",
@@ -640,7 +640,7 @@
       ]
     },
     {
-      "enabled": "false",
+      "enabled": false,
       "owner": "UltimateMenu",
       "repository": "UltimateMenu",
       "description": "一个菜单脚本，具有出色的解锁/抢劫编辑器和支持 YimMenu 的金钱选项。",
@@ -653,7 +653,7 @@
       ]
     },
     {
-      "enabled": "true",
+      "enabled": true,
       "owner": "sch-lda",
       "repository": "GTA5OnlineLua",
       "description": "由Alice大佬开发的Kiddion专用Lua脚本，相当于Kiddion增强版DLC，推荐使用。",
@@ -666,7 +666,7 @@
       ]
     },
     {
-      "enabled": "false",
+      "enabled": true,
       "owner": "UltimateMenu",
       "repository": "UltimateMenu",
       "description": "一个菜单脚本，具有出色的解锁/抢劫编辑器和支持 kiddions modest menu 3的金钱选项。",

@@ -151,7 +151,7 @@ def process_projects(config, github_token):
 
     # 处理 Release 项目
     for project in config.get("release", []):
-        if project.get("enabled") == "true":
+        if project.get("enabled"):
             owner = project.get("owner")
             repo = project.get("repository")
             save_path = os.path.expandvars(project.get("save_path"))
@@ -177,7 +177,7 @@ def process_projects(config, github_token):
     logging.info(f"{'-' * 100}")
 
     for project in config.get("file", []):
-        if project.get("enabled") == "true":
+        if project.get("enabled"):
             owner = project.get("owner")
             repo = project.get("repository")
             save_path = os.path.expandvars(project.get("save_path"))

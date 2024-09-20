@@ -67,7 +67,7 @@
       "github_token": "请填写你自己的 Github Token，自行搜索获取方式",
       "release": [
         {
-            "enabled": "true",
+            "enabled": true,
             "owner": "notepad-plus-plus",
             "repository": "notepad-plus-plus",
             "description": "Notepad++ 是一个免费的源代码编辑器和记事本替代品，支持多种编程语言和自然语言。",
@@ -83,7 +83,7 @@
       ],
       "file": [
         {
-          "enabled": "true",
+          "enabled": true,
           "owner": "sch-lda",
           "repository": "yctest2",
           "description": "YimMenu的广告黑名单文件。",
