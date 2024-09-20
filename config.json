@@ -237,6 +237,19 @@
     },
     {
       "enabled": "true",
+      "owner": "sch-lda",
+      "repository": "GTA5OnlineLua",
+      "description": "一款由Alice大佬开发的YimMenu使用的Lua脚本",
+      "github_url": "https://github.com/CrazyZhang666/GTA5OnlineLua/blob/main/YimMenu/AliceLua.zip",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "extract_flag": true,
+      "folder": "/YimMenu",
+      "files": [
+        "AliceLua.zip"
+      ]
+    },
+    {
+      "enabled": "true",
       "owner": "TCRoid",
       "repository": "YimMenu-Lua-RScript",
       "description": "载具、NPC实体管理控制，任务助手，和其它若干功能",
@@ -610,6 +623,45 @@
       "folder": "",
       "files": [
         "claw_crane.lua"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "UltimateMenu",
+      "repository": "UltimateMenu",
+      "description": "一个菜单脚本，具有出色的解锁/抢劫编辑器和支持 YimMenu 的金钱选项。",
+      "github_url": "https://github.com/UltimateMenu/UltimateMenu/tree/main/YimMenu",
+      "save_path": "%APPDATA%\\YimMenu\\scripts",
+      "extract_flag": true,
+      "folder": "/YimMenu",
+      "files": [
+        "Ultimate_Menu For YimMenu V*.lua"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "sch-lda",
+      "repository": "GTA5OnlineLua",
+      "description": "由Alice大佬开发的Kiddion专用Lua脚本，相当于Kiddion增强版DLC，推荐使用。",
+      "github_url": "https://github.com/CrazyZhang666/GTA5OnlineLua/blob/main/Kiddion/AliceLua.zip",
+      "save_path": "%ProgramData%\\GTA5OnlineTools\\Kiddion\\scripts",
+      "extract_flag": true,
+      "folder": "/Kiddion",
+      "files": [
+        "AliceLua.zip"
+      ]
+    },
+    {
+      "enabled": "false",
+      "owner": "UltimateMenu",
+      "repository": "UltimateMenu",
+      "description": "一个菜单脚本，具有出色的解锁/抢劫编辑器和支持 kiddions modest menu 3的金钱选项。",
+      "github_url": "https://github.com/UltimateMenu/UltimateMenu/tree/main/Kiddions",
+      "save_path": "%ProgramData%\\GTA5OnlineTools\\Kiddion\\scripts",
+      "extract_flag": true,
+      "folder": "/Kiddions",
+      "files": [
+        "Ultimate_Menu_V*.lua"
       ]
     }
   ]
