@@ -77,7 +77,7 @@
       "repository": "GUI.for.SingBox",
       "description": "SingBox 的 GUI",
       "github_url": "https://github.com/GUI-for-Cores/GUI.for.SingBox",
-      "save_path": "D:\\加速\\sing-box",
+      "save_path": "D:\\加速\\GUI.for.SingBox",
       "version": "v1.8.5",
       "stable_version": true,
       "extract_flag": true,
@@ -163,6 +163,20 @@
       "extract_flag": true,
       "files": [
         "version.dll"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "sch-lda",
+      "repository": "yctest2",
+      "description": "GTA5线上小助手-Yimmenu持续集成及其他在线资源。",
+      "github_url": "https://github.com/sch-lda/yctest2",
+      "version": "CI",
+      "save_path": "D:\\Game\\GameTools\\GTAV\\线上小助手",
+      "stable_version": true,
+      "extract_flag": true,
+      "files": [
+        "GTA5OnlineTools.exe"
       ]
     }
   ],

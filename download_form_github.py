@@ -194,6 +194,7 @@ def process_projects(config, github_token):
             logging.info(f"{'-' * 100}")
 
     logging.info("Github 最新文件已下载完成")
+    logging.info(f"{'=' * 100}")
 
 
 def send_http_request(url, token=None, stream=False):
