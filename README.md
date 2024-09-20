@@ -128,7 +128,7 @@
 ## 处理 release 项目逻辑说明
 
 - 更新 Release 时，会先检查 `config.json`中的版本号是否包含数字
-- 如果版本号不包含数字，则下载最新的Release（），且不更新`config.json`中的`version`
+- 如果版本号不包含数字，则下载最新的`Release`资产，且不更新`config.json`中的`version`
 - 如果版本包含数字，则从`config.json`中，检查`stable_version`的值。
     - 如果`stable_version`为true，则调用`GitHub API` 获取`latest`版本，并与本地版本比较。
         - 如果本地版本与`GitHub API`的`latest`版本一致，则跳过下载。
