@@ -75,7 +75,7 @@ def read_or_update_json_file(filename, data=None):
         else:
             # 写入数据到 JSON 文件
             with open(filename, 'w', encoding='utf-8') as f:
-                json.dump(data, f, indent=4, ensure_ascii=False)
+                json.dump(data, f, indent=2, ensure_ascii=False)
             logging.info(f"更新 JSON 文件: {filename}")
     except json.JSONDecodeError as e:
         logging.error(f"JSON 解码错误: {e}")
@@ -155,13 +155,15 @@ def process_projects(config, github_token):
         if project.get("enabled") == "true":
             owner = project.get("owner")
             repo = project.get("repository")
-            version = project.get("version")
             save_path = os.path.expandvars(project.get("save_path"))
+            version = project.get("version")
+            stable_version = project.get("stable_version")
             extract_flag = project.get("extract_flag")
             files = project.get("files")
 
             logging.info(f"即将处理项目: {owner}/{repo}")
-            download_latest_release(owner, repo, version, save_path, extract_flag, files, github_token)
+            download_releases_from_github(owner, repo, save_path, version, stable_version, extract_flag, files,
+                                          github_token)
             logging.info(f"当前项目已处理完成: {owner}/{repo}")
             logging.info(f"{'-' * 100}")
         else:
@@ -226,31 +228,38 @@ def send_http_request(url, token=None, stream=False):
     return None
 
 
-def download_latest_release(owner, repo, version, save_path, extract_flag=None, files=None, token=None):
+def download_releases_from_github(owner, repo, save_path, version, stable_version=True, extract_flag=True, files=None,
+                                  token=None):
     """
-    下载最新的 GitHub Release 文件
+    下载最新的 GitHub Release 文件并进行处理。
 
-    根据提供的 owner 和 repo 下载最新的 Release 文件。
+    该函数检查指定项目的 Release，比较本地版本与最新版本，
+    如果需要更新，则下载最新的 Release 文件，并根据配置选项解压。
 
     参数:
         owner (str): GitHub 仓库的拥有者。
         repo (str): GitHub 仓库的名称。
-        version (str): 要检查的版本号。
         save_path (str): 下载文件保存的路径。
-        files (list, optional): 要下载的文件名列表。默认为 None，表示下载所有文件。
-        token (str, optional): GitHub API Token，用于身份验证。默认为 None。
-    """
+        version (str): 本地版本号，用于与最新版本进行比较。
+        stable_version (bool, optional): 是否下载的稳定版本，默认为 True。
+        extract_flag (bool, optional): 是否解压下载的文件，默认为 True。
+        files (list, optional): 需要下载的特定文件名模式列表，默认为 None（下载所有文件）。
+        token (str, optional): GitHub API Token，用于身份验证，默认为 None。
 
-    url = f"{GITHUB_API_BASE_URL}/repos/{owner}/{repo}/releases/latest"
+    返回:
+        None: 如果成功处理了 Release 文件。
+    """
+    latest_url = f"{GITHUB_API_BASE_URL}/repos/{owner}/{repo}/releases/latest"
+    releases_url = f"{GITHUB_API_BASE_URL}/repos/{owner}/{repo}/releases"
 
     def update_version_in_config(owner, repo, latest_version):
         """
-        更新 config.json 中指定项目的版本号
+        更新配置文件中的项目版本信息。
 
-        参数:
-            owner (str): GitHub 仓库的拥有者。
-            repo (str): GitHub 仓库的名称。
-            latest_version (str): 最新的版本号。
+        Args:
+            owner (str): 项目的拥有者。
+            repo (str): 项目的名称。
+            latest_version (str): 最新版本号。
         """
         data = read_or_update_json_file(CONFIG_FILENAME) or {}
         for project in data.get("release", []):
@@ -259,80 +268,68 @@ def download_latest_release(owner, repo, version, save_path, extract_flag=None, 
         read_or_update_json_file(CONFIG_FILENAME, data)
         logging.info(f"项目 {owner}/{repo} 的版本号已更新为: {latest_version}")
 
+    def handle_assets(assets):
+        """
+        处理下载的 Release 资产。
+
+        根据提供的文件模式（如果有），下载匹配的资产。
+
+        Args:
+            assets (list): Release 中的资产列表。
+        """
+        if files:
+            for asset in assets:
+                for pattern in files:
+                    if fnmatch.fnmatch(asset['name'], pattern):
+                        file_url = asset['browser_download_url']
+                        download_and_extract_file(file_url, asset['name'], save_path, extract_flag, token)
+                        break
+        else:
+            for asset in assets:
+                file_url = asset['browser_download_url']
+                download_and_extract_file(file_url, asset['name'], save_path, extract_flag, token)
+
     try:
-        response = send_http_request(url, token)  # 发送请求以获取最新的 Release
-        if response is None:
+        # 判断版本号是否包含数字
+        if not any(char.isdigit() for char in version):
+            logging.info(f"项目 {owner}/{repo} 的版本号不包含数字，直接下载最新的 Release")
+            latest_response = send_http_request(latest_url, token)
+            latest_assets = latest_response.json().get('assets', [])
+            handle_assets(latest_assets)
             return
 
-        release = response.json()
-        latest_version = release.get('tag_name', 'unknown')  # 获取最新版本号
+        # 版本号包含数字，检查 stable_version
+        if stable_version:
+            logging.info(f"检查稳定版本: {owner}/{repo}")
+            latest_response = send_http_request(latest_url, token)
+            latest_data = latest_response.json()
+            latest_release = latest_data.get('tag_name')
 
-        # 如果版本号不包含数字，则下载最新 Release
-        if re.search(r'\d', version) is None:
-            logging.info(f"项目 {owner}/{repo} 的版本号不包含数字, 将优先下载最新 Release")
-            assets = release.get('assets', [])
-            if assets:
-                for asset in assets:
-                    file_name = asset['name']
-                    file_url = asset['browser_download_url']
-                    download_and_extract_file(file_url, save_path, extract_flag, file_name, token)
+            if version == latest_release:
+                logging.info(f"本地版本号与 GitHub 最新版本号一致，无需更新")
             else:
-                logging.info(f"项目 {owner}/{repo} 没有可用的 Release, 尝试下载最新的 Artifact")
-                download_latest_artifact(owner, repo, save_path, extract_flag, token=token)
-
-            update_version_in_config(owner, repo, latest_version)
-
-        # 如果版本号不同，则下载最新的 Release 文件
-        elif version != latest_version:
-            assets = release.get('assets', [])
-            files_to_download = [asset['name'] for asset in assets] if not files else files
-
-            for asset in assets:
-                file_name = asset['name']
-                if any(fnmatch.fnmatch(file_name, pattern) for pattern in files_to_download):
-                    file_url = asset['browser_download_url']
-                    download_and_extract_file(file_url, save_path, extract_flag, file_name, token)
-
-            update_version_in_config(owner, repo, latest_version)
+                logging.info(f"本地版本号落后于 GitHub 最新版本号，将下载最新的 Release")
+                latest_assets = latest_data.get('assets', [])
+                handle_assets(latest_assets)
+                update_version_in_config(owner, repo, latest_release)
 
         else:
-            logging.info(f"项目 {owner}/{repo} 本地版本为 {version}, 已是最新, 将跳过下载")
+            logging.info(f"检查非稳定版本: {owner}/{repo}")
+            releases_response = send_http_request(releases_url, token)
+            releases = releases_response.json()
+            if releases:
+                release_0_version = releases[0].get('tag_name')
+
+                if version == release_0_version:
+                    logging.info(f"本地版本号与 GitHub release[0] 版本号一致，无需更新")
+                else:
+                    logging.info(f"本地版本号落后于 GitHub release[0] 版本号，将下载最新的 Release")
+                    latest_assets = releases[0].get('assets', [])
+                    handle_assets(latest_assets)
+                    update_version_in_config(owner, repo, release_0_version)
 
     except Exception as e:
         logging.error(f"处理 Release 时发生错误: {e}")
-
-
-def download_latest_artifact(owner, repo, save_path, extract_flag=None, token=None):
-    """
-    下载 GitHub 的 Artifact 文件
-
-    根据提供的 owner 和 repo 下载最新的 Artifact 文件。
-
-    参数:
-        owner (str): GitHub 仓库的拥有者。
-        repo (str): GitHub 仓库的名称。
-        save_path (str): 下载文件保存的路径。
-        token (str, optional): GitHub API Token，用于身份验证。默认为 None。
-    """
-    url = f"{GITHUB_API_BASE_URL}/repos/{owner}/{repo}/actions/artifacts"
-
-    try:
-        response = send_http_request(url, token)  # 发送请求以获取 Artifact 列表
-        if response is None:
-            return
-
-        artifacts = response.json().get('artifacts', [])
-        if artifacts:
-            latest_artifact = artifacts[0]  # 获取最新的 Artifact
-            artifact_url = latest_artifact['archive_download_url']
-            artifact_name = f"{latest_artifact['name']}.zip"
-
-            # 下载并解压 Artifact 文件
-            download_and_extract_file(artifact_url, save_path, extract_flag, artifact_name, token)
-        else:
-            logging.info("未找到 Artifact 文件。")
-    except Exception as e:
-        logging.error(f"处理 Github Artifact 时, 发生错误: {e}")
 
 
 def download_files_from_github(owner, repo, save_path, extract_flag=None, folder=None, files=None, token=None):
@@ -345,6 +342,7 @@ def download_files_from_github(owner, repo, save_path, extract_flag=None, folder
         owner (str): GitHub 仓库的拥有者。
         repo (str): GitHub 仓库的名称。
         save_path (str): 下载文件保存的路径。
+        extract_flag (bool, optional): 是否解压下载的文件，默认为 True。
         folder (str, optional): 指定的文件夹路径。默认为 None。
         files (list, optional): 要下载的文件名列表。默认为 None，表示下载所有文件。
         token (str, optional): GitHub API Token，用于身份验证。默认为 None。
@@ -366,7 +364,7 @@ def download_files_from_github(owner, repo, save_path, extract_flag=None, folder
             os.makedirs(file_dir, exist_ok=True)
 
         # 下载文件并解压
-        download_and_extract_file(file_url, file_dir, file_name, extract_flag, token)
+        download_and_extract_file(file_url, file_name, file_dir, extract_flag, token)
 
     def fetch_files_in_directory(folder_url):
         """
@@ -433,7 +431,7 @@ def download_files_from_github(owner, repo, save_path, extract_flag=None, folder
         logging.error(f"下载 GitHub 文件时发生错误: {e}")
 
 
-def download_and_extract_file(url, save_path, extract_flag, file_name, token=None):
+def download_and_extract_file(url, file_name, save_path, extract_flag, token=None):
     """
     从给定 URL 下载并解压文件
 

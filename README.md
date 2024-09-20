@@ -73,8 +73,9 @@
             "description": "Notepad++ 是一个免费的源代码编辑器和记事本替代品，支持多种编程语言和自然语言。",
             "github_url": "https://github.com/notepad-plus-plus/notepad-plus-plus",
             "version": "v8.6.9",
-            "save_path": "D:\\Program\\Editor&IDE\\Notepad++",
+            "stable_version": true,
             "extract_flag": true,
+            "save_path": "D:\\Program\\Editor&IDE\\Notepad++",
             "files": [
                 "npp.*.portable.x64.7z"
             ]
@@ -87,8 +88,8 @@
           "repository": "yctest2",
           "description": "YimMenu的广告黑名单文件。",
           "github_url": "https://github.com/sch-lda/yctest2/tree/main/Lua",
-          "save_path": "%APPDATA%\\YimMenu\\",
           "extract_flag": true,
+          "save_path": "%APPDATA%\\YimMenu\\",
           "folder": "",
           "files": [
             "ad.json",
@@ -108,27 +109,34 @@
 
   ### `release`和`file`中的参数说明如下所示
 
-| 参数             | 说明                        |
-|----------------|---------------------------|
-| `enabled`      | 是否启用下载                    |
-| `owner`        | 仓库所有者                     |
-| `repository`   | 仓库名称                      |
-| `version`      | 版本                        |
-| `description`  | 该项目在Github中的描述            |
-| `github_url`   | GitHub的URL地址（仅供参考，暂无实际作用） |
-| `save_path`    | 保存到本地的路径                  |
-| `extract_flag` | 下载后是否解压                   |
-| `folder`       | 需要下载的文件夹及文件夹下的文件（注意/的使用）  |
-| `files`        | 需要下载的文件（可为空，支持通配符）        |
+| 参数               | 说明                        |
+|------------------|---------------------------|
+| `enabled`        | 是否启用下载                    |
+| `owner`          | 仓库所有者                     |
+| `repository`     | 仓库名称                      |
+| `version`        | 版本                        |
+| `description`    | 该项目在Github中的描述            |
+| `github_url`     | GitHub的URL地址（仅供参考，暂无实际作用） |
+| `save_path`      | 保存到本地的路径                  |
+| `stable_version` | 是否下载稳定发行版                 |
+| `extract_flag`   | 下载后是否解压                   |
+| `folder`         | 需要下载的文件夹及文件夹下的文件（注意/的使用）  |
+| `files`          | 需要下载的文件（可为空，支持通配符）        |
 
 ---
 
 ## 处理 release 项目逻辑说明
 
-- 更新 Release 时，将 `config.json` 中的版本信息与 GitHub API 中的最新版进行比较。
-- 若有更新的版本，会下载最新 Release，并同步更新 `config.json` 的 version。
-- 如果版本号不包含数字，会直接下载最新的Release，并同步更新 `config.json` 的 version。
-- 如果没有 Release，则下载 最新的Artifact`的全部文件。
+- 更新 Release 时，会先检查 `config.json`中的版本号是否包含数字
+- 如果版本号不包含数字，则下载最新的Release（），且不更新`config.json`中的`version`
+- 如果版本包含数字，则从`config.json`中，检查`stable_version`的值。
+    - 如果`stable_version`为true，则调用`GitHub API` 获取`latest`版本，并与本地版本比较。
+        - 如果本地版本与`GitHub API`的`latest`版本一致，则跳过下载。
+        - 如果本地版本落后于`GitHub API`的`latest`版本，会直接下载最新的`Release`，并同步更新 `config.json` 的 `version`。
+    - 如果`stable_version`为false，则调用`GitHub API` 获取`release[0]`版本，并与本地版本比较。
+        - 如果本地版本与`GitHub API`的`release[0]`版本一致，则跳过下载。
+        - 如果本地版本落后于`GitHub API`的`release[0]`版本，会直接下载最新的`Release`，并同步更新 `config.json` 的
+          `version`。
 
 ---
 
@@ -154,16 +162,15 @@
 
 ## 函数及其作用
 
-| 函数名称                         | 作用                                     |
-|------------------------------|----------------------------------------|
-| `setup_logging`              | 设置日志记录，配置日志文件和控制台输出的格式。                |
-| `read_or_update_json_file`   | 读取或更新指定的JSON文件，返回读取的数据或写入后的状态。         |
-| `prompt_user_selection`      | 获取用户输入以选择操作，显示可用的操作并在超时后执行默认操作。        |
-| `process_projects`           | 处理项目的更新和下载操作，根据配置文件中的项目进行操作。           |
-| `send_http_request`          | 发起HTTP请求并返回响应，支持添加身份验证Token。           |
-| `download_latest_release`    | 下载最新的GitHubRelease文件，处理版本检查和下载逻辑。      |
-| `download_latest_artifact`   | 下载最新的GitHubArtifact文件，根据提供的仓库信息获取下载链接。 |
-| `download_files_from_github` | 从GitHub下载指定的文件，保留文件夹结构并覆盖已存在的文件。       |
-| `download_and_extract_file`  | 从给定URL下载并解压文件，支持ZIP、7Z和RAR格式。          |
-| `toggle_project_status`      | 显示项目列表，允许用户选择项目并切换其下载功能状态。             |
-| `main`                       | 主函数，执行下载任务或修改配置，协调整个程序的执行流程。           |
+| 函数名称                            | 作用                                  |
+|---------------------------------|-------------------------------------|
+| `setup_logging`                 | 设置日志记录，配置日志文件和控制台输出的格式。             |
+| `read_or_update_json_file`      | 读取或更新指定的JSON文件，返回读取的数据或写入后的状态。      |
+| `prompt_user_selection`         | 获取用户输入以选择操作，显示可用的操作并在超时后执行默认操作。     |
+| `process_projects`              | 处理项目的更新和下载操作，根据配置文件中的项目进行操作。        |
+| `send_http_request`             | 发起HTTP请求并返回响应，支持添加身份验证Token。        |
+| `download_releases_from_github` | 从 GitHub 下载 Release 文件，处理版本检查和下载逻辑。 |
+| `download_files_from_github`    | 从 GitHub 下载指定的文件，保留文件夹结构并覆盖已存在的文件。  |
+| `download_and_extract_file`     | 从给定URL下载并解压文件，支持ZIP、7Z和RAR格式。       |
+| `toggle_project_status`         | 显示项目列表，允许用户选择项目并切换其下载功能状态。          |
+| `main`                          | 主函数，执行下载任务或修改配置，协调整个程序的执行流程。        |
