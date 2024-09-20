@@ -64,11 +64,25 @@
       "description": "Clash Nyanpasu～(∠・ω< )⌒☆​",
       "github_url": "https://github.com/libnyanpasu/clash-nyanpasu",
       "save_path": "D:\\加速\\Clash Nyanpasu",
-      "version": "pre-release",
+      "version": "v1.6.1",
       "stable_version": true,
       "extract_flag": true,
       "files": [
         "Clash.Nyanpasu_*_x64_portable.zip"
+      ]
+    },
+    {
+      "enabled": "true",
+      "owner": "GUI-for-Cores",
+      "repository": "GUI.for.SingBox",
+      "description": "SingBox 的 GUI",
+      "github_url": "https://github.com/GUI-for-Cores/GUI.for.SingBox",
+      "save_path": "D:\\加速\\sing-box",
+      "version": "v1.8.5",
+      "stable_version": true,
+      "extract_flag": true,
+      "files": [
+        "GUI.for.SingBox-windows-386.zip"
       ]
     },
     {
@@ -78,9 +92,9 @@
       "description": "通用代理平台",
       "github_url": "https://github.com/SagerNet/sing-box",
       "save_path": "D:\\加速\\sing-box",
-      "version": "v1.10.0-beta.9",
-      "stable_version": false,
-      "extract_flag": false,
+      "version": "v1.9.5",
+      "stable_version": true,
+      "extract_flag": true,
       "files": [
         "sing-box-*-windows-386.zip"
       ]
