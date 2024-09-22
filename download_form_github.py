@@ -669,9 +669,9 @@ def toggle_project_status(config, project_type):
 
     # 输出项目列表及其状态
     for i, project in enumerate(projects):
-        status_symbol = '√' if project['enabled'] == "true" else '×'
+        status_symbol = '√' if project['enabled'] else '×'
         print(
-            f"{i + 1}. [{status_symbol}] {'已启用' if project['enabled'] == 'true' else '未启用'}下载功能：{project['owner']}/{project['repository']}（{project.get('description', '')}）")
+            f"{i + 1}. [{status_symbol}] {'已启用' if project['enabled'] else '未启用'}下载功能：{project['owner']}/{project['repository']}（{project.get('description', '')}）")
 
     print("-" * 100)
     user_input = input(

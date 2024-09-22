@@ -49,7 +49,7 @@
       "repository": "clash-verge-rev",
       "description": "Clash Verge的延续-基于Tauri（Windows，MacOS，Linux）的Clash Meta GUI。",
       "github_url": "https://github.com/clash-verge-rev/clash-verge-rev",
-      "save_path": "D:\\加速\\Clash Verge",
+      "save_path": "D:\\加速\\Clash Verge Rev",
       "version": "v1.7.7",
       "stable_version": true,
       "extract_flag": true,
@@ -68,7 +68,7 @@
       "stable_version": true,
       "extract_flag": true,
       "files": [
-        "Clash.Nyanpasu_*_x64_portable.zip"
+        "Clash.Verge_*_x64_fixed_webview2_portable.zip"
       ]
     },
     {
@@ -78,7 +78,7 @@
       "description": "SingBox 的 GUI",
       "github_url": "https://github.com/GUI-for-Cores/GUI.for.SingBox",
       "save_path": "D:\\加速\\GUI.for.SingBox",
-      "version": "v1.8.5",
+      "version": "v1.8.6",
       "stable_version": true,
       "extract_flag": true,
       "files": [
@@ -92,7 +92,7 @@
       "description": "通用代理平台",
       "github_url": "https://github.com/SagerNet/sing-box",
       "save_path": "D:\\加速\\sing-box",
-      "version": "v1.9.5",
+      "version": "v1.9.6",
       "stable_version": true,
       "extract_flag": true,
       "files": [
@@ -118,7 +118,7 @@
       "description": "LOL（英雄联盟）自动化工具",
       "github_url": "https://github.com/SnxiaLianXin/LOLAutomationTools",
       "save_path": "D:\\Game\\GameTools\\LOL\\LOLAutomationTools",
-      "version": "v2.6.0.0",
+      "version": "v2.6.1.1",
       "stable_version": true,
       "extract_flag": true,
       "files": []
@@ -157,7 +157,7 @@
       "repository": "Fuck_off_EA_App",
       "description": "继续使用Origin而不是EA应用程序",
       "github_url": "https://github.com/p0358/Fuck_off_EA_App",
-      "save_path": "D:\\Game\\Origin",
+      "save_path": "..\\Origin",
       "version": "v3",
       "stable_version": true,
       "extract_flag": true,
@@ -199,7 +199,7 @@
       "enabled": true,
       "owner": "sch-lda",
       "repository": "yctest2",
-      "description": "YimMenu的翻译Lua脚本功能（非在线更新）。使用方法：YimMenu-设置-Lua脚本-Lua翻译设置-语言文件路径修改为（translations/lua_lang.json）。",
+      "description": "YimMenu的翻译Lua脚本功能（非在线更新）。使用方法：YimMenu-设置-Lua脚本-Lua翻译设置-语言文件路径修改为 translations/lua_lang.json 。",
       "github_url": "https://github.com/sch-lda/yctest2/tree/main/Lua",
       "save_path": "%APPDATA%\\YimMenu\\translations",
       "extract_flag": true,
