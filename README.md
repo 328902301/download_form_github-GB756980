@@ -4,8 +4,8 @@
 
 - 该项目旨在简化从 GitHub 下载最新版本 Release 和特定文件的过程。用户可以通过简单的配置文件来设置需要下载的项目，程序将自动处理下载和更新逻辑。
 - 该项目整合了两个项目：
-    - [download_github_release（下载 Github 最新 Release）](https://github.com/GB756980/download_github_release)
-    - [download_github_file（下载 Github 文件）](https://github.com/GB756980/download_github_file)
+    - [download_github_release（下载 GitHub 最新 Release）](https://github.com/GB756980/download_github_release)
+    - [download_github_file（下载 GitHub 文件）](https://github.com/GB756980/download_github_file)
 
 ---
 

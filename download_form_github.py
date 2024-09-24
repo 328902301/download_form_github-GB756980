@@ -13,7 +13,7 @@ from tqdm import tqdm
 
 # 定义配置文件和日志文件的名称
 CONFIG_FILENAME = "config.json"
-LOG_FILENAME = "download_log.txt"
+LOG_FILENAME = "download_form_github.log"
 GITHUB_API_BASE_URL = "https://api.github.com"
 GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com"
 
@@ -36,18 +36,18 @@ def setup_logging(log_filename):
     console_formatter = logging.Formatter('%(message)s')
     file_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 
-    # 设置文件处理器
-    file_handler = logging.FileHandler(log_filename, encoding='utf-8')
-    file_handler.setLevel(logging.INFO)
-    file_handler.setFormatter(file_formatter)
-
     # 设置控制台处理器
     console_handler = logging.StreamHandler()
     console_handler.setLevel(logging.INFO)
     console_handler.setFormatter(console_formatter)
 
+    # 设置文件处理器
+    file_handler = logging.FileHandler(log_filename, encoding='utf-8')
+    file_handler.setLevel(logging.INFO)
+    file_handler.setFormatter(file_formatter)
+
     # 配置基本的日志记录设置
-    logging.basicConfig(level=logging.INFO, handlers=[file_handler, console_handler])
+    logging.basicConfig(level=logging.INFO, handlers=[console_handler, file_handler])
 
     # 禁用不安全请求的警告
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -170,7 +170,7 @@ def process_projects(config, github_token):
             logging.info(f"{'-' * 100}")
 
     logging.info("Github 最新 Release 已更新完成")
-    logging.info(f"{'=' * 100}")
+    logging.info("=" * 100)
 
     # 处理文件项目
     logging.info("即将开始下载 Github 文件")
@@ -194,7 +194,7 @@ def process_projects(config, github_token):
             logging.info(f"{'-' * 100}")
 
     logging.info("Github 最新文件已下载完成")
-    logging.info(f"{'=' * 100}")
+    logging.info("=" * 100)
 
 
 def send_http_request(url, token=None, stream=False):
@@ -703,12 +703,12 @@ def main():
     主函数，执行下载任务或修改配置
     """
     setup_logging(LOG_FILENAME)  # 设置日志记录
-    logging.info(f"{'=' * 100}")
+    logging.info("=" * 100)
 
     # 读取配置文件
     config = read_or_update_json_file(CONFIG_FILENAME) or {}
     logging.info(f"已读取配置文件: {CONFIG_FILENAME}")
-    logging.info(f"{'=' * 100}")
+    logging.info("=" * 100)
 
     # 获取用户选择的操作
     user_choice = prompt_user_selection(config)
