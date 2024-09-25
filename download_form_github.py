@@ -1,6 +1,7 @@
 import os
 import re
 import json
+import time
 import py7zr
 import rarfile
 import zipfile
@@ -211,20 +212,29 @@ def send_http_request(url, token=None, stream=False):
     返回:
         Response: 请求的响应对象，如果请求失败则返回 None。
     """
+    retries = 3  # 最大重试次数，默认为 3
+    backoff_factor = 1  # 重试间隔的乘数因子，默认为1
     headers = {'Authorization': f'token {token}'} if token else {}
 
-    try:
-        response = requests.get(url, headers=headers, verify=False, stream=stream)  # 发送请求
-        response.raise_for_status()  # 检查请求是否成功
-        return response
-    except requests.HTTPError as http_err:
-        logging.error(f"HTTP错误发生: {http_err} - URL: {url}")
-    except requests.ConnectionError as conn_err:
-        logging.error(f"连接错误发生: {conn_err} - URL: {url}")
-    except requests.Timeout as timeout_err:
-        logging.error(f"请求超时: {timeout_err} - URL: {url}")
-    except requests.RequestException as e:
-        logging.error(f"请求失败: {url}. 错误信息: {e}")
+    for attempt in range(retries):
+        try:
+            response = requests.get(url, headers=headers, verify=False, stream=stream)  # 发送请求
+            response.raise_for_status()  # 检查请求是否成功
+            return response
+        except requests.HTTPError as http_err:
+            logging.error(f"HTTP错误发生: {http_err} - URL: {url}")
+        except requests.ConnectionError as conn_err:
+            logging.error(f"连接错误发生: {conn_err} - URL: {url}")
+        except requests.Timeout as timeout_err:
+            logging.error(f"请求超时: {timeout_err} - URL: {url}")
+        except requests.RequestException as e:
+            logging.error(f"请求失败: {url}. 错误信息: {e}")
+
+        # 如果发生错误，等待一段时间后重试
+        wait_time = int(backoff_factor * (2 ** attempt))
+        logging.info(f"等待 {wait_time} 秒后重试...")
+        time.sleep(wait_time)
+
     return None
 
 

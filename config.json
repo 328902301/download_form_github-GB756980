@@ -75,7 +75,7 @@
       "enabled": true,
       "owner": "GUI-for-Cores",
       "repository": "GUI.for.SingBox",
-      "description": "SingBox 的 GUI",
+      "description": "GUI for SingBox",
       "github_url": "https://github.com/GUI-for-Cores/GUI.for.SingBox",
       "save_path": "D:\\加速\\GUI.for.SingBox",
       "version": "v1.8.6",
@@ -87,16 +87,16 @@
     },
     {
       "enabled": true,
-      "owner": "SagerNet",
-      "repository": "sing-box",
-      "description": "通用代理平台",
-      "github_url": "https://github.com/SagerNet/sing-box",
-      "save_path": "D:\\加速\\sing-box",
-      "version": "v1.9.6",
+      "owner": "GUI-for-Cores",
+      "repository": "GUI.for.Clash",
+      "description": "A GUI program developed by vue3 + wails.",
+      "github_url": "https://github.com/GUI-for-Cores/GUI.for.Clash",
+      "save_path": "D:\\加速\\GUI.for.Clash",
+      "version": "v1.8.6",
       "stable_version": true,
       "extract_flag": true,
       "files": [
-        "sing-box-*-windows-386.zip"
+        "GUI.for.Clash-windows-386.zip"
       ]
     },
     {
