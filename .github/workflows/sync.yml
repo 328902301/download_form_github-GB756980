@@ -1,0 +1,48 @@
+name: 'Upstream Sync'
+
+permissions:
+  contents: write  # 允许写入仓库的内容
+  
+on:
+  workflow_dispatch:  # 允许手动触发工作流
+  schedule:
+    - cron: '0 0 * * *'  # 每天 UTC 0:00 进行调度
+
+jobs:
+  sync_latest_from_upstream:
+    runs-on: ubuntu-latest
+    name: Sync latest commits from upstream repo
+    if: ${{ github.event.repository.fork }}  # 仅在 fork 仓库运行
+
+    steps:
+    # 步骤 1: 运行标准检出操作，由GitHub提供
+    - name: Checkout target repo
+      uses: actions/checkout@v3
+
+    # 步骤 2: 运行同步操作
+    - name: Sync upstream changes
+      id: sync
+      uses: aormsby/Fork-Sync-With-Upstream-action@v3.4.1
+      with:
+        upstream_sync_repo: GB756980/download_form_github
+        upstream_sync_branch: main
+        target_sync_branch: main
+        target_repo_token: ${{ secrets.GITHUB_TOKEN }}
+      
+    # 步骤 3: 根据同步输出变量'has_new_commits'显示示例消息
+    - name: New commits found
+      if: steps.sync.outputs.has_new_commits == 'true'
+      run: echo "发现新的提交需要同步。"
+    
+    - name: No new commits
+      if: steps.sync.outputs.has_new_commits == 'false'
+      run: echo "没有新的提交。"
+      
+    - name: Show value of 'has_new_commits'
+      run: echo ${{ steps.sync.outputs.has_new_commits }}
+
+    # 设置运行时的UTF-8
+    - name: Set UTF-8 encoding
+      run: |
+        export LANG=en_US.UTF-8
+        export LC_ALL=en_US.UTF-8
