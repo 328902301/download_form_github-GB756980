@@ -1,5 +1,5 @@
-import os
 import re
+import os
 import json
 import time
 import py7zr
@@ -14,14 +14,14 @@ from tqdm import tqdm
 
 # 定义配置文件和日志文件的名称
 CONFIG_FILENAME = "config.json"
-LOG_FILENAME = "download_form_github.log"
+LOG_FILENAME = "download_log.txt"
 GITHUB_API_BASE_URL = "https://api.github.com"
 GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com"
 
 
 def setup_logging(log_filename):
     """
-    设置日志记录
+    设置日志记录功能。
 
     创建日志文件并设置日志格式。
 
@@ -33,16 +33,15 @@ def setup_logging(log_filename):
         with open(log_filename, 'w', encoding='utf-8') as f:
             f.write("")
 
-    # 设置日志格式
+    # 设置日志输出格式
     console_formatter = logging.Formatter('%(message)s')
     file_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 
-    # 设置控制台处理器
+    # 设置控制台和文件处理器
     console_handler = logging.StreamHandler()
     console_handler.setLevel(logging.INFO)
     console_handler.setFormatter(console_formatter)
 
-    # 设置文件处理器
     file_handler = logging.FileHandler(log_filename, encoding='utf-8')
     file_handler.setLevel(logging.INFO)
     file_handler.setFormatter(file_formatter)
@@ -54,14 +53,15 @@ def setup_logging(log_filename):
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
-def read_or_update_json_file(filename, data=None):
+def read_or_update_config(config_filename, data=None):
     """
-    读取或更新 JSON 文件
+    读取或更新 JSON 文件。
 
-    如果 data 为 None，读取 JSON 文件并返回数据；否则，将数据写入文件。
+    如果 `data` 为 None，则读取 JSON 文件并返回数据；
+    否则将数据写入文件。
 
     参数:
-        filename (str): JSON 文件的路径和名称。
+        config_filename (str): JSON 文件的路径和名称。
         data (dict, optional): 要写入 JSON 文件的数据。默认为 None。
 
     返回:
@@ -70,13 +70,13 @@ def read_or_update_json_file(filename, data=None):
     try:
         if data is None:
             # 读取 JSON 文件
-            with open(filename, 'r', encoding='utf-8') as f:
+            with open(config_filename, 'r', encoding='utf-8') as f:
                 return json.load(f)
         else:
-            # 写入数据到 JSON 文件
-            with open(filename, 'w', encoding='utf-8') as f:
+            # 将数据写入 JSON 文件
+            with open(config_filename, 'w', encoding='utf-8') as f:
                 json.dump(data, f, indent=2, ensure_ascii=False)
-            logging.info(f"更新 JSON 文件: {filename}")
+            logging.info(f"更新 JSON 文件: {config_filename}")
     except json.JSONDecodeError as e:
         logging.error(f"JSON 解码错误: {e}")
     except IOError as e:
@@ -86,41 +86,36 @@ def read_or_update_json_file(filename, data=None):
     return None
 
 
-def prompt_user_selection(config):
+def prompt_user_selection(config_json):
     """
-    获取用户输入以选择操作
+    提示用户选择操作。
 
     显示可用的操作并在 3 秒内未输入时执行默认操作。
 
     参数:
-        config (dict): 配置数据。
+        config_json (dict): 配置数据。
 
     返回:
         str: 用户的选择。
     """
 
     def execute_default_action():
-        """
-        执行默认操作
-        """
+        """执行默认操作"""
         nonlocal default_action_executed
         if not default_action_executed:
             default_action_executed = True
-            github_token = config.get("github_token")
             print("=" * 100)
-            process_projects(config, github_token)
+            process_projects(config_json, config_json.get("github_token"))
 
     def get_user_input():
-        """
-        获取用户输入
-        """
+        """获取用户输入"""
         nonlocal user_choice
-        user_choice = input("请输入1、2 或 3 ，当输入其他时，将退出程序：\n")
+        user_choice = input("请输入1、2 或 3，其他时将退出程序：\n")
         timer.cancel()
 
     print("请选择操作，3秒内未输入则执行默认操作：")
     print("-" * 100)
-    print("1. 更新 Github Release 、下载 Github 文件（默认操作）")
+    print("1. 更新 Github Release、下载 Github 文件（默认操作）")
     print("2. 修改“是否更新 Github Release”的标识")
     print("3. 修改“是否下载 Github 文件”的标识")
     print("-" * 100)
@@ -128,9 +123,8 @@ def prompt_user_selection(config):
     user_choice = None
     default_action_executed = False
 
-    # 定义一个计时器，在 3 秒后执行默认操作
-    timer = threading.Timer(3.0, lambda: execute_default_action())
-    # 创建并启动线程以获取用户输入
+    # 启动计时器
+    timer = threading.Timer(3.0, execute_default_action)
     input_thread = threading.Thread(target=get_user_input)
     input_thread.start()
     timer.start()
@@ -139,98 +133,82 @@ def prompt_user_selection(config):
     return user_choice
 
 
-def process_projects(config, github_token):
+def process_projects(config_json, github_token):
     """
-    处理项目的更新和下载操作
+    处理项目的更新和下载操作。
 
     参数:
-        config (dict): 配置数据。
+        config_json (dict): 配置数据。
         github_token (str): GitHub API Token，用于身份验证。
     """
     logging.info("即将开始更新 Github 最新 Release")
     logging.info(f"{'-' * 100}")
 
     # 处理 Release 项目
-    for project in config.get("release", []):
-        if project.get("enabled"):
-            owner = project.get("owner")
-            repo = project.get("repository")
-            save_path = os.path.expandvars(project.get("save_path"))
-            version = project.get("version")
-            stable_version = project.get("stable_version")
-            extract_flag = project.get("extract_flag")
-            files = project.get("files")
-
-            logging.info(f"即将处理项目: {owner}/{repo}")
-            download_releases_from_github(owner, repo, save_path, version, stable_version, extract_flag, files,
-                                          github_token)
-            logging.info(f"当前项目已处理完成: {owner}/{repo}")
+    for project_json in config_json.get("release", []):
+        if project_json.get("enabled"):
+            logging.info(f"即将处理项目: {project_json.get('owner')}/{project_json.get('repository')}")
+            download_releases_from_github(project_json, github_token)
+            logging.info(f"当前项目已处理完成: {project_json.get('owner')}/{project_json.get('repository')}")
             logging.info(f"{'-' * 100}")
         else:
-            logging.info(f"项目 {project.get('owner')}/{project.get('repository')} 未启用下载, 将跳过下载")
+            logging.info(f"项目 {project_json.get('owner')}/{project_json.get('repository')} 未启用下载，将跳过")
             logging.info(f"{'-' * 100}")
 
-    logging.info("Github 最新 Release 已更新完成")
+    logging.info("Github 最新 Release 更新完成")
     logging.info("=" * 100)
 
     # 处理文件项目
     logging.info("即将开始下载 Github 文件")
     logging.info(f"{'-' * 100}")
 
-    for project in config.get("file", []):
-        if project.get("enabled"):
-            owner = project.get("owner")
-            repo = project.get("repository")
-            save_path = os.path.expandvars(project.get("save_path"))
-            extract_flag = project.get("extract_flag")
-            folder = project.get("folder")
-            files = project.get("files")
-
-            logging.info(f"即将处理项目: {owner}/{repo}")
-            download_files_from_github(owner, repo, save_path, extract_flag, folder, files, github_token)
-            logging.info(f"当前项目已处理完成: {owner}/{repo}")
+    for project_json in config_json.get("file", []):
+        if project_json.get("enabled"):
+            logging.info(f"即将处理项目: {project_json.get('owner')}/{project_json.get('repository')}")
+            download_files_from_github(project_json, github_token)
+            logging.info(f"当前项目已处理完成: {project_json.get('owner')}/{project_json.get('repository')}")
             logging.info(f"{'-' * 100}")
         else:
-            logging.info(f"项目 {project.get('owner')}/{project.get('repository')} 未启用下载, 将跳过下载")
+            logging.info(f"项目 {project_json.get('owner')}/{project_json.get('repository')} 未启用下载，将跳过")
             logging.info(f"{'-' * 100}")
 
-    logging.info("Github 最新文件已下载完成")
+    logging.info("Github 最新文件下载完成")
     logging.info("=" * 100)
 
 
-def send_http_request(url, token=None, stream=False):
+def send_http_request(url, github_token=None, stream=False):
     """
-    发起 HTTP 请求，并返回响应
+    发起 HTTP 请求，并返回响应。
 
-    如果提供了 token，添加到请求头中。
+    如果提供了 token，则添加到请求头中。
 
     参数:
         url (str): 要请求的 URL。
-        token (str, optional): GitHub API Token，用于身份验证。默认为 None。
+        github_token (str, optional): GitHub API Token，用于身份验证。
         stream (bool, optional): 是否以流的方式下载，默认为 False。
 
     返回:
         Response: 请求的响应对象，如果请求失败则返回 None。
     """
-    retries = 3  # 最大重试次数，默认为 3
-    backoff_factor = 1  # 重试间隔的乘数因子，默认为1
-    headers = {'Authorization': f'token {token}'} if token else {}
+    retries = 3  # 最大重试次数
+    backoff_factor = 1  # 重试延迟因子
+    headers = {'Authorization': f'token {github_token}'} if github_token else {}
 
     for attempt in range(retries):
         try:
-            response = requests.get(url, headers=headers, verify=False, stream=stream)  # 发送请求
+            response = requests.get(url, headers=headers, verify=False, stream=stream)
             response.raise_for_status()  # 检查请求是否成功
             return response
         except requests.HTTPError as http_err:
-            logging.error(f"HTTP错误发生: {http_err} - URL: {url}")
+            logging.error(f"HTTP错误: {http_err} - URL: {url}")
         except requests.ConnectionError as conn_err:
-            logging.error(f"连接错误发生: {conn_err} - URL: {url}")
+            logging.error(f"连接错误: {conn_err} - URL: {url}")
         except requests.Timeout as timeout_err:
             logging.error(f"请求超时: {timeout_err} - URL: {url}")
         except requests.RequestException as e:
             logging.error(f"请求失败: {url}. 错误信息: {e}")
 
-        # 如果发生错误，等待一段时间后重试
+        # 等待重试的时间
         wait_time = int(backoff_factor * (2 ** attempt))
         logging.info(f"等待 {wait_time} 秒后重试...")
         time.sleep(wait_time)
@@ -238,27 +216,25 @@ def send_http_request(url, token=None, stream=False):
     return None
 
 
-def download_releases_from_github(owner, repo, save_path, version, stable_version=True, extract_flag=True, files=None,
-                                  token=None):
+def download_releases_from_github(project_json, github_token=None):
     """
-    下载最新的 GitHub Release 文件并进行处理。
+    下载最新的 GitHub Release 文件并处理。
 
-    该函数检查指定项目的 Release，比较本地版本与最新版本，
+    此函数检查指定项目的 Release，比较本地版本与最新版本，
     如果需要更新，则下载最新的 Release 文件，并根据配置选项解压。
 
     参数:
-        owner (str): GitHub 仓库的拥有者。
-        repo (str): GitHub 仓库的名称。
-        save_path (str): 下载文件保存的路径。
-        version (str): 本地版本号，用于与最新版本进行比较。
-        stable_version (bool, optional): 是否下载的稳定版本，默认为 True。
-        extract_flag (bool, optional): 是否解压下载的文件，默认为 True。
-        files (list, optional): 需要下载的特定文件名模式列表，默认为 None（下载所有文件）。
-        token (str, optional): GitHub API Token，用于身份验证，默认为 None。
-
-    返回:
-        None: 如果成功处理了 Release 文件。
+        project_json (dict): 项目配置信息。
+        github_token (str, optional): GitHub API Token，用于身份验证，默认为 None。
     """
+    owner = project_json.get("owner")
+    repo = project_json.get("repository")
+    save_path = os.path.expandvars(project_json.get("save_path"))
+    version = project_json.get("version")
+    stable_version = project_json.get("stable_version")
+    extract_flag = project_json.get("extract_flag")
+    files = project_json.get("files")
+
     latest_url = f"{GITHUB_API_BASE_URL}/repos/{owner}/{repo}/releases/latest"
     releases_url = f"{GITHUB_API_BASE_URL}/repos/{owner}/{repo}/releases"
 
@@ -271,11 +247,11 @@ def download_releases_from_github(owner, repo, save_path, version, stable_versio
             repo (str): 项目的名称。
             latest_version (str): 最新版本号。
         """
-        data = read_or_update_json_file(CONFIG_FILENAME) or {}
+        data = read_or_update_config(CONFIG_FILENAME) or {}
         for project in data.get("release", []):
             if project.get("owner") == owner and project.get("repository") == repo:
                 project["version"] = latest_version
-        read_or_update_json_file(CONFIG_FILENAME, data)
+        read_or_update_config(CONFIG_FILENAME, data)
         logging.info(f"项目 {owner}/{repo} 的版本号已更新为: {latest_version}")
 
     def handle_assets(assets):
@@ -292,18 +268,18 @@ def download_releases_from_github(owner, repo, save_path, version, stable_versio
                 for pattern in files:
                     if fnmatch.fnmatch(asset['name'], pattern):
                         file_url = asset['browser_download_url']
-                        download_and_extract_file(file_url, asset['name'], save_path, extract_flag, token)
+                        download_and_extract_file(file_url, asset['name'], save_path, extract_flag, github_token)
                         break
         else:
             for asset in assets:
                 file_url = asset['browser_download_url']
-                download_and_extract_file(file_url, asset['name'], save_path, extract_flag, token)
+                download_and_extract_file(file_url, asset['name'], save_path, extract_flag, github_token)
 
     try:
         # 判断版本号是否包含数字
         if not any(char.isdigit() for char in version):
             logging.info(f"项目 {owner}/{repo} 的版本号不包含数字，直接下载最新的 Release")
-            latest_response = send_http_request(latest_url, token)
+            latest_response = send_http_request(latest_url, github_token)
             latest_assets = latest_response.json().get('assets', [])
             handle_assets(latest_assets)
             return
@@ -311,7 +287,7 @@ def download_releases_from_github(owner, repo, save_path, version, stable_versio
         # 版本号包含数字，检查 stable_version
         if stable_version:
             logging.info(f"检查稳定版本: {owner}/{repo}")
-            latest_response = send_http_request(latest_url, token)
+            latest_response = send_http_request(latest_url, github_token)
             latest_data = latest_response.json()
             latest_release = latest_data.get('tag_name')
 
@@ -325,7 +301,7 @@ def download_releases_from_github(owner, repo, save_path, version, stable_versio
 
         else:
             logging.info(f"检查非稳定版本: {owner}/{repo}")
-            releases_response = send_http_request(releases_url, token)
+            releases_response = send_http_request(releases_url, github_token)
             releases = releases_response.json()
             if releases:
                 release_0_version = releases[0].get('tag_name')
@@ -342,21 +318,22 @@ def download_releases_from_github(owner, repo, save_path, version, stable_versio
         logging.error(f"处理 Release 时发生错误: {e}")
 
 
-def download_files_from_github(owner, repo, save_path, extract_flag=None, folder=None, files=None, token=None):
+def download_files_from_github(project_json, github_token=None):
     """
-    从 GitHub Raw 下载文件，保留文件夹结构，并覆盖已存在的文件
+    从 GitHub Raw 下载文件，保留文件夹结构，并覆盖已存在的文件。
 
     根据提供的 owner 和 repo 下载指定文件或文件夹。
 
     参数:
-        owner (str): GitHub 仓库的拥有者。
-        repo (str): GitHub 仓库的名称。
-        save_path (str): 下载文件保存的路径。
-        extract_flag (bool, optional): 是否解压下载的文件，默认为 True。
-        folder (str, optional): 指定的文件夹路径。默认为 None。
-        files (list, optional): 要下载的文件名列表。默认为 None，表示下载所有文件。
-        token (str, optional): GitHub API Token，用于身份验证。默认为 None。
+        project_json (dict): 项目配置信息。
+        github_token (str, optional): GitHub API Token，用于身份验证，默认为 None。
     """
+    owner = project_json.get("owner")
+    repo = project_json.get("repository")
+    save_path = os.path.expandvars(project_json.get("save_path"))
+    extract_flag = project_json.get("extract_flag")
+    folder = project_json.get("folder")
+    files = project_json.get("files")
 
     def download_single_file(file_url, file_path):
         """
@@ -374,7 +351,7 @@ def download_files_from_github(owner, repo, save_path, extract_flag=None, folder
             os.makedirs(file_dir, exist_ok=True)
 
         # 下载文件并解压
-        download_and_extract_file(file_url, file_name, file_dir, extract_flag, token)
+        download_and_extract_file(file_url, file_name, file_dir, extract_flag, github_token)
 
     def fetch_files_in_directory(folder_url):
         """
@@ -386,7 +363,7 @@ def download_files_from_github(owner, repo, save_path, extract_flag=None, folder
         返回:
             list: 文件夹中的文件列表。
         """
-        response = send_http_request(folder_url, token)
+        response = send_http_request(folder_url, github_token)
         if response is None:
             return []
         return response.json()
@@ -441,17 +418,18 @@ def download_files_from_github(owner, repo, save_path, extract_flag=None, folder
         logging.error(f"下载 GitHub 文件时发生错误: {e}")
 
 
-def download_and_extract_file(url, file_name, save_path, extract_flag, token=None):
+def download_and_extract_file(url, file_name, save_path, extract_flag, github_token=None):
     """
-    从给定 URL 下载并解压文件
+    从给定 URL 下载并解压文件。
 
     下载文件后，如果是压缩文件则解压。
 
     参数:
         url (str): 文件的下载链接。
-        save_path (str): 文件保存的路径。
         file_name (str): 下载后保存的文件名。
-        token (str, optional): GitHub API Token，用于身份验证。默认为 None。
+        save_path (str): 文件保存的路径。
+        extract_flag (bool): 是否解压下载的文件。
+        github_token (str, optional): GitHub API Token，用于身份验证，默认为 None。
 
     返回:
         bool: 下载和解压是否成功。
@@ -503,7 +481,7 @@ def download_and_extract_file(url, file_name, save_path, extract_flag, token=Non
         except Exception as e:
             logging.error(f"删除旧版本文件时发生错误: {e}")
 
-    def download_file(url, save_path, file_name, token=None):
+    def download_file(url, save_path, file_name, github_token=None):
         """
         从给定 URL 下载文件
 
@@ -513,13 +491,13 @@ def download_and_extract_file(url, file_name, save_path, extract_flag, token=Non
             url (str): 文件的下载链接。
             save_path (str): 文件保存的路径。
             file_name (str): 下载后保存的文件名。
-            token (str, optional): GitHub API Token，用于身份验证。默认为 None。
+            github_token (str, optional): GitHub API Token，用于身份验证。默认为 None。
 
         返回:
             str: 下载的文件路径，如果下载失败则返回 None。
         """
         try:
-            response = send_http_request(url, token, stream=True)  # 发送请求下载文件
+            response = send_http_request(url, github_token, stream=True)  # 发送请求下载文件
             if response is None:
                 return None
 
@@ -645,7 +623,7 @@ def download_and_extract_file(url, file_name, save_path, extract_flag, token=Non
                 rename_file(file_save_path, older_version_file_path)
 
         # 下载文件
-        downloaded_file_path = download_file(url, save_path, file_name, token)
+        downloaded_file_path = download_file(url, save_path, file_name, github_token)
         if downloaded_file_path:
             # 如果下载的文件是压缩文件，则解压
             logging.info(f"文件成功下载到: {file_save_path}")
@@ -661,24 +639,24 @@ def download_and_extract_file(url, file_name, save_path, extract_flag, token=Non
         return False
 
 
-def toggle_project_status(config, project_type):
+def toggle_project_status(config_json, project_type):
     """
-    显示项目列表，允许用户选择项目并切换其下载功能状态
+    显示项目列表，允许用户选择项目并切换其下载功能状态。
 
     参数:
-        config (dict): 配置数据。
+        config_json (dict): 配置数据。
         project_type (str): 项目的类型（如 "release" 或 "file"）。
 
     返回:
         dict: 更新后的配置数据。
     """
-    projects = config.get(project_type, [])
+    project_json = config_json.get(project_type, [])
 
     print(f"项目列表 - {project_type.capitalize()} 项目")
     print("-" * 100)
 
     # 输出项目列表及其状态
-    for i, project in enumerate(projects):
+    for i, project in enumerate(project_json):
         status_symbol = '√' if project['enabled'] else '×'
         print(
             f"{i + 1}. [{status_symbol}] {'已启用' if project['enabled'] else '未启用'}下载功能：{project['owner']}/{project['repository']}（{project.get('description', '')}）")
@@ -691,21 +669,21 @@ def toggle_project_status(config, project_type):
     # 解析用户输入的序号
     selected_indices = [int(i.strip()) - 1 for i in re.split(r'[，,；;/\s]+', user_input) if i.strip().isdigit()]
 
-    invalid_indices = [i + 1 for i in selected_indices if i < 0 or i >= len(projects)]
+    invalid_indices = [i + 1 for i in selected_indices if i < 0 or i >= len(project_json)]
     if invalid_indices:
         print(f"以下序号无效：{', '.join(map(str, invalid_indices))}")
-        return config
+        return config_json
 
     # 切换项目的启用状态
     for index in selected_indices:
-        project = projects[index]
-        new_status = "false" if project["enabled"] == "true" else "true"
-        project["enabled"] = new_status
+        project = project_json[index]
+        project["enabled"] = not project["enabled"]
         logging.info(
-            f"项目 {project['owner']}/{project['repository']} 的下载已{'启用' if new_status == 'true' else '禁用'}。")
+            f"项目 {project['owner']}/{project['repository']} 的下载已{'启用' if project['enabled'] else '禁用'}。")
         logging.info(f"{'-' * 100}")
 
-    read_or_update_json_file(CONFIG_FILENAME, config)
+    read_or_update_config(CONFIG_FILENAME, config_json)
+    return config_json
 
 
 def main():
@@ -716,24 +694,24 @@ def main():
     logging.info("=" * 100)
 
     # 读取配置文件
-    config = read_or_update_json_file(CONFIG_FILENAME) or {}
+    config_json = read_or_update_config(CONFIG_FILENAME) or {}
     logging.info(f"已读取配置文件: {CONFIG_FILENAME}")
     logging.info("=" * 100)
 
     # 获取用户选择的操作
-    user_choice = prompt_user_selection(config)
+    user_choice = prompt_user_selection(config_json)
 
     if user_choice == '1':
         print("=" * 100)
-        process_projects(config, config.get("github_token"))  # 处理项目下载
+        process_projects(config_json, config_json.get("github_token"))  # 处理项目下载
 
     elif user_choice == '2':
         print("=" * 100)
-        toggle_project_status(config, "release")  # 切换 Release 项目的状态
+        toggle_project_status(config_json, "release")  # 切换 Release 项目的状态
 
     elif user_choice == '3':
         print("=" * 100)
-        toggle_project_status(config, "file")  # 切换文件项目的状态
+        toggle_project_status(config_json, "file")  # 切换文件项目的状态
 
     else:
         logging.info("=" * 100)
