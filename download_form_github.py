@@ -176,7 +176,7 @@ def process_projects(config_json, github_token):
     logging.info("=" * 100)
 
 
-def send_http_request(url, github_token=None, stream=False):
+def send_http_request(url, github_token=None, stream=False, timeout=10):
     """
     发起 HTTP 请求，并返回响应。
 
@@ -186,6 +186,7 @@ def send_http_request(url, github_token=None, stream=False):
         url (str): 要请求的 URL。
         github_token (str, optional): GitHub API Token，用于身份验证。
         stream (bool, optional): 是否以流的方式下载，默认为 False。
+        timeout (int, optional): 请求超时时间（秒），默认为 10 秒。
 
     返回:
         Response: 请求的响应对象，如果请求失败则返回 None。
@@ -196,7 +197,7 @@ def send_http_request(url, github_token=None, stream=False):
 
     for attempt in range(retries):
         try:
-            response = requests.get(url, headers=headers, verify=False, stream=stream)
+            response = requests.get(url, headers=headers, stream=stream, timeout=timeout, verify=False)
             response.raise_for_status()  # 检查请求是否成功
             return response
         except requests.HTTPError as http_err:
