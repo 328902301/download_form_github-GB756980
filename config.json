@@ -35,7 +35,7 @@
       "repository": "BiliBiliToolPro",
       "description": "B 站（bilibili）自动任务工具，支持docker、青龙、k8s等多种部署方式。敏感肌也能用。",
       "github_url": "https://github.com/RayWangQvQ/BiliBiliToolPro",
-      "save_path": "D:\\影音\\哔哩哔哩\\bilibili-tool-pro",
+      "save_path": "D:\\工具\\bilibili-tool-pro",
       "version": "2.1.1",
       "stable_version": true,
       "extract_flag": true,
@@ -69,6 +69,20 @@
       "extract_flag": true,
       "files": [
         "FlClash-*-windows-amd64.zip"
+      ]
+    },
+    {
+      "enabled": true,
+      "owner": "hiddify",
+      "repository": "hiddify-next",
+      "description": "多平台自动代理客户端，支持Sing-Box、X-Ray、TUIC、Hysteria、Reality、Trojan、SSH等它是开源的，安全的，无广告的。",
+      "github_url": "https://github.com/hiddify/hiddify-next",
+      "save_path": "D:\\加速\\Hiddify",
+      "version": "v2.0.5",
+      "stable_version": true,
+      "extract_flag": true,
+      "files": [
+        "Hiddify-Windows-Portable-x64.zip"
       ]
     },
     {
@@ -176,7 +190,7 @@
       "stable_version": true,
       "extract_flag": true,
       "files": [
-        "champr-*.zip"
+        "champr-v*.zip"
       ]
     },
     {
