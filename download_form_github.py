@@ -86,32 +86,21 @@ def read_or_update_config(config_filename, data=None):
     return None
 
 
-def prompt_user_selection(config_json):
+def prompt_user_selection():
     """
     提示用户选择操作。
 
     显示可用的操作并在 3 秒内未输入时执行默认操作。
 
-    参数:
-        config_json (dict): 配置数据。
-
     返回:
         str: 用户的选择。
     """
-
-    def execute_default_action():
-        """执行默认操作"""
-        nonlocal default_action_executed
-        if not default_action_executed:
-            default_action_executed = True
-            print("=" * 100)
-            process_projects(config_json, config_json.get("github_token"))
+    user_choice = [None]  # 使用列表以便在内部函数中修改
+    input_event = threading.Event()  # 创建事件对象
 
     def get_user_input():
-        """获取用户输入"""
-        nonlocal user_choice
-        user_choice = input("请输入1、2 或 3，其他时将退出程序：\n")
-        timer.cancel()
+        user_choice[0] = input("请输入1、2 或 3，其他时将退出程序：")
+        input_event.set()  # 设置事件，表示用户已输入
 
     print("请选择操作，3秒内未输入则执行默认操作：")
     print("-" * 100)
@@ -120,17 +109,20 @@ def prompt_user_selection(config_json):
     print("3. 修改“是否下载 Github 文件”的标识")
     print("-" * 100)
 
-    user_choice = None
-    default_action_executed = False
-
-    # 启动计时器
-    timer = threading.Timer(3.0, execute_default_action)
+    # 启动输入线程
     input_thread = threading.Thread(target=get_user_input)
     input_thread.start()
-    timer.start()
-    input_thread.join()
 
-    return user_choice
+    # 等待3秒或者直到用户输入
+    input_event.wait(timeout=3)
+
+    # 检查用户是否输入
+    if input_event.is_set():
+        return user_choice[0]  # 返回用户选择
+    else:
+        print(f"\n"+"-" * 100)
+        print("用户在 3 秒内未输入，将执行默认操作！")
+        return '1'  # 默认值
 
 
 def process_projects(config_json, github_token):
@@ -700,7 +692,7 @@ def main():
     logging.info("=" * 100)
 
     # 获取用户选择的操作
-    user_choice = prompt_user_selection(config_json)
+    user_choice = prompt_user_selection()
 
     if user_choice == '1':
         print("=" * 100)
