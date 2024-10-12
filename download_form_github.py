@@ -99,10 +99,10 @@ def prompt_user_selection():
     input_event = threading.Event()  # 创建事件对象
 
     def get_user_input():
-        user_choice[0] = input("请输入1、2 或 3，其他时将退出程序：")
+        user_choice[0] = input("请输入1、2 或 3， 输入其他时将退出程序：")
         input_event.set()  # 设置事件，表示用户已输入
 
-    print("请选择操作，3秒内未输入则执行默认操作：")
+    print("请选择操作（3秒内未做出选择，则执行默认操作）")
     print("-" * 100)
     print("1. 更新 Github Release、下载 Github 文件（默认操作）")
     print("2. 修改“是否更新 Github Release”的标识")
@@ -121,7 +121,7 @@ def prompt_user_selection():
         return user_choice[0]  # 返回用户选择
     else:
         print(f"\n"+"-" * 100)
-        print("用户在 3 秒内未输入，将执行默认操作！")
+        print("3秒内未做出选择，将执行默认操作！")
         return '1'  # 默认值
 
 
@@ -275,7 +275,7 @@ def download_releases_from_github(project_json, github_token=None):
             latest_response = send_http_request(latest_url, github_token)
             latest_assets = latest_response.json().get('assets', [])
             handle_assets(latest_assets)
-            return
+            return True
 
         # 版本号包含数字，检查 stable_version
         if stable_version:
@@ -307,8 +307,10 @@ def download_releases_from_github(project_json, github_token=None):
                     handle_assets(latest_assets)
                     update_version_in_config(owner, repo, release_0_version)
 
+        return True
     except Exception as e:
         logging.error(f"处理 Release 时发生错误: {e}")
+        return False
 
 
 def download_files_from_github(project_json, github_token=None):
@@ -407,8 +409,10 @@ def download_files_from_github(project_json, github_token=None):
         # 开始下载目录内容
         download_directory_contents(folder_url, folder_path, folder.startswith('/'))
 
+        return True
     except Exception as e:
         logging.error(f"下载 GitHub 文件时发生错误: {e}")
+        return False
 
 
 def download_and_extract_file(url, file_name, save_path, extract_flag, github_token=None):
