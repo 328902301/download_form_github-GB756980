@@ -22,7 +22,7 @@
       "description": "Notepad++ 是一个免费的源代码编辑器和记事本替代品，支持多种编程语言和自然语言。",
       "github_url": "https://github.com/notepad-plus-plus/notepad-plus-plus",
       "save_path": "D:\\Program\\Editor&IDE\\Notepad++",
-      "version": "v8.7.2",
+      "version": "v8.7.3",
       "stable_version": true,
       "extract_flag": true,
       "files": [
@@ -73,34 +73,6 @@
     },
     {
       "enabled": true,
-      "owner": "hiddify",
-      "repository": "hiddify-next",
-      "description": "多平台自动代理客户端，支持Sing-Box、X-Ray、TUIC、Hysteria、Reality、Trojan、SSH等它是开源的，安全的，无广告的。",
-      "github_url": "https://github.com/hiddify/hiddify-next",
-      "save_path": "D:\\加速\\Hiddify",
-      "version": "v2.0.5",
-      "stable_version": true,
-      "extract_flag": true,
-      "files": [
-        "Hiddify-Windows-Portable-x64.zip"
-      ]
-    },
-    {
-      "enabled": true,
-      "owner": "mihomo-party-org",
-      "repository": "mihomo-party",
-      "description": "Another Mihomo GUI.",
-      "github_url": "https://github.com/mihomo-party-org/mihomo-party",
-      "save_path": "D:\\加速\\mihomo-party",
-      "version": "v1.5.12",
-      "stable_version": true,
-      "extract_flag": true,
-      "files": [
-        "mihomo-party-windows-*-x64-portable.7z"
-      ]
-    },
-    {
-      "enabled": true,
       "owner": "clash-verge-rev",
       "repository": "clash-verge-rev",
       "description": "Clash Verge的延续-基于Tauri（Windows，MacOS，Linux）的Clash Meta GUI。",
@@ -124,7 +96,35 @@
       "stable_version": true,
       "extract_flag": true,
       "files": [
-        "Clash.Verge_*_x64_fixed_webview2_portable.zip"
+        "Clash.Nyanpasu_1.6.1_x64_portable.zip"
+      ]
+    },
+    {
+      "enabled": true,
+      "owner": "mihomo-party-org",
+      "repository": "mihomo-party",
+      "description": "Another Mihomo GUI.",
+      "github_url": "https://github.com/mihomo-party-org/mihomo-party",
+      "save_path": "D:\\加速\\Mihomo Party",
+      "version": "v1.5.12",
+      "stable_version": true,
+      "extract_flag": true,
+      "files": [
+        "mihomo-party-windows-*-x64-portable.7z"
+      ]
+    },
+    {
+      "enabled": true,
+      "owner": "GUI-for-Cores",
+      "repository": "GUI.for.Clash",
+      "description": "A GUI program developed by vue3 + wails.",
+      "github_url": "https://github.com/GUI-for-Cores/GUI.for.Clash",
+      "save_path": "D:\\加速\\GUI.for.Clash",
+      "version": "v1.8.9",
+      "stable_version": true,
+      "extract_flag": true,
+      "files": [
+        "GUI.for.Clash-windows-386.zip"
       ]
     },
     {
@@ -143,16 +143,16 @@
     },
     {
       "enabled": true,
-      "owner": "GUI-for-Cores",
-      "repository": "GUI.for.Clash",
-      "description": "A GUI program developed by vue3 + wails.",
-      "github_url": "https://github.com/GUI-for-Cores/GUI.for.Clash",
-      "save_path": "D:\\加速\\GUI.for.Clash",
-      "version": "v1.8.9",
+      "owner": "hiddify",
+      "repository": "hiddify-next",
+      "description": "多平台自动代理客户端，支持Sing-Box、X-Ray、TUIC、Hysteria、Reality、Trojan、SSH等它是开源的，安全的，无广告的。",
+      "github_url": "https://github.com/hiddify/hiddify-next",
+      "save_path": "D:\\加速\\Hiddify",
+      "version": "v2.0.5",
       "stable_version": true,
       "extract_flag": true,
       "files": [
-        "GUI.for.Clash-windows-386.zip"
+        "Hiddify-Windows-Portable-x64.zip"
       ]
     },
     {
@@ -186,11 +186,11 @@
       "description": "终极 JavaScript 插件加载器，构建您无与伦比的 LoL 客户端。",
       "github_url": "https://github.com/PenguLoader/PenguLoader",
       "save_path": "D:\\Game\\GameTools\\LOL\\Pengu Loader",
-      "version": "v1.1.4",
+      "version": "v1.1.6",
       "stable_version": true,
       "extract_flag": true,
       "files": [
-        "pengu-loader-*.7z"
+        "pengu-loader-v*.zip"
       ]
     },
     {
