@@ -22,7 +22,7 @@
       "description": "Notepad++ 是一个免费的源代码编辑器和记事本替代品，支持多种编程语言和自然语言。",
       "github_url": "https://github.com/notepad-plus-plus/notepad-plus-plus",
       "save_path": "D:\\Program\\Editor&IDE\\Notepad++",
-      "version": "v8.7.3",
+      "version": "v8.7.4",
       "stable_version": true,
       "extract_flag": true,
       "files": [
@@ -64,7 +64,7 @@
       "description": "基于 ClashMeta 的多平台代理客户端，简单易用，开源无广告。",
       "github_url": "https://github.com/chen08209/FlClash",
       "save_path": "D:\\加速\\FlClash",
-      "version": "v0.8.68",
+      "version": "v0.8.70",
       "stable_version": true,
       "extract_flag": true,
       "files": [
@@ -96,7 +96,7 @@
       "stable_version": true,
       "extract_flag": true,
       "files": [
-        "Clash.Nyanpasu_1.6.1_x64_portable.zip"
+        "Clash.Nyanpasu_*_x64_portable.zip"
       ]
     },
     {
@@ -165,7 +165,23 @@
       "version": "v2.2.3_fix",
       "stable_version": true,
       "extract_flag": true,
-      "files": []
+      "files": [
+		"legod-auto-pause.zip"
+	  ]
+    },
+    {
+      "enabled": true,
+      "owner": "BeyondDimension",
+      "repository": "SteamTools",
+      "description": "🛠「Watt Toolkit」是一个开源跨平台的多功能 Steam 工具箱。",
+      "github_url": "https://github.com/BeyondDimension/SteamTools",
+      "save_path": "D:\\Game\\Steam\\Steam++",
+      "version": "v2.6.2.2",
+      "stable_version": true,
+      "extract_flag": true,
+      "files": [
+        "Steam++_*_win_x64.7z"
+      ]
     },
     {
       "enabled": true,
@@ -174,10 +190,12 @@
       "description": "LOL（英雄联盟）自动化工具",
       "github_url": "https://github.com/SnxiaLianXin/LOLAutomationTools",
       "save_path": "D:\\Game\\GameTools\\LOL\\LOLAutomationTools",
-      "version": "v2.6.2.1",
+      "version": "v2.6.2.2",
       "stable_version": true,
       "extract_flag": true,
-      "files": []
+      "files": [
+		"LOLAutomationTools.zip"
+	  ]
     },
     {
       "enabled": true,
@@ -205,20 +223,6 @@
       "extract_flag": true,
       "files": [
         "champr-v*.zip"
-      ]
-    },
-    {
-      "enabled": true,
-      "owner": "p0358",
-      "repository": "Fuck_off_EA_App",
-      "description": "继续使用Origin而不是EA应用程序",
-      "github_url": "https://github.com/p0358/Fuck_off_EA_App",
-      "save_path": "D:\\Game\\Origin",
-      "version": "v3",
-      "stable_version": true,
-      "extract_flag": true,
-      "files": [
-        "version.dll"
       ]
     },
     {
