@@ -166,8 +166,8 @@
       "stable_version": true,
       "extract_flag": true,
       "files": [
-		"legod-auto-pause.zip"
-	  ]
+        "legod-auto-pause.zip"
+      ]
     },
     {
       "enabled": true,
@@ -176,7 +176,7 @@
       "description": "🛠「Watt Toolkit」是一个开源跨平台的多功能 Steam 工具箱。",
       "github_url": "https://github.com/BeyondDimension/SteamTools",
       "save_path": "D:\\Game\\Steam\\Steam++",
-      "version": "v2.6.2.2",
+      "version": "3.0.0-rc.13",
       "stable_version": true,
       "extract_flag": true,
       "files": [
@@ -194,8 +194,8 @@
       "stable_version": true,
       "extract_flag": true,
       "files": [
-		"LOLAutomationTools.zip"
-	  ]
+        "LOLAutomationTools.zip"
+      ]
     },
     {
       "enabled": true,
